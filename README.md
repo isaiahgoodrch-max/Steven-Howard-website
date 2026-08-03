@@ -1,0 +1,123 @@
+# Steven Howard — Writing & Publishing Coach
+
+A one-page personal coaching site for Steven Howard, award-winning author of 22 books.
+Positioned as personal coaching from an author, deliberately separate from the
+Caliente Press publishing-house brand.
+
+Static HTML/CSS/JS. No build step, no dependencies.
+
+---
+
+## ⚠️ Before launch — do these two things
+
+### 1. Turn on real email delivery (2 minutes, free)
+
+Right now the contact form falls back to opening the visitor's own email app with the
+message pre-filled. That works, but it depends on the visitor having a mail client set
+up and actually pressing send. Set up a real endpoint so nothing gets lost:
+
+1. Go to <https://web3forms.com>
+2. Enter `stevenhoward@verizon.net` and submit
+3. Web3Forms emails an **Access Key** to that address
+4. Open `assets/js/main.js` and replace the placeholder:
+
+```js
+ACCESS_KEY: 'YOUR_WEB3FORMS_ACCESS_KEY',   // <-- paste the key here
+```
+
+Submissions then arrive in Steven's inbox with the sender's name, email, focus area,
+what they're writing, and what they want to do with it.
+
+(Formspree works too — set `PROVIDER: 'formspree'` and fill in `FORMSPREE_URL`.)
+
+### 2. Confirm the placeholder facts
+
+These were pulled from Steven's existing sites and should be checked with him:
+
+- **Pricing** — intentionally omitted. The site says rates are discussed on the first
+  call. Add a price point when he sets one.
+- **Session cadence** — described as weekly, bi-weekly, or shaped around the project.
+- **"10,000+ people coached"** — Caliente Leadership says 10,000+; Steven Howard Speaks
+  says 12,000+. The lower, more conservative number is used.
+- **Testimonials** — Alex Chan and Rodrigo Martinelli, both from the Caliente Press site.
+  Worth confirming he's happy to reuse them on a personal-brand site.
+
+---
+
+## What's on the page
+
+| Section | Purpose |
+|---|---|
+| Hero | Portrait + positioning as a personal coach, not a publishing house |
+| Stats | 22 books · 10,000+ coached · 45 years · Top 200 Global Voices |
+| Coaching | The two tracks — learn to write it / get it published |
+| What we work on | Eight concrete service areas |
+| How it works | Zoom, 50 minutes, flexible cadence, built around the manuscript |
+| Steps | The four-step path from first note to published book |
+| About | Full bio, career, and awards |
+| Testimonials | Two authors he's worked with |
+| Contact | Modal inquiry form |
+
+## The inquiry form
+
+Clicking any "Apply to Work Together" button — or his email address in the footer
+area — opens a modal asking for:
+
+- Name (required)
+- Email (required)
+- What they need most help with (dropdown)
+- What they're writing (required)
+- What they want to do with it (required)
+
+It has inline validation, a honeypot field for spam, keyboard focus trapping, and
+Escape-to-close. If the endpoint ever fails, it falls back to the visitor's mail client
+rather than silently dropping the message.
+
+## Structure
+
+```
+index.html
+assets/
+  css/styles.css
+  js/main.js
+  img/
+    steven-howard-portrait.jpg      hero (1200px)
+    steven-howard-portrait-sm.jpg   about + mobile (640px)
+    award-gold-medal.jpg            NFAA Gold Medal
+    top-200-voices.jpg              Top 200 badge (unused, kept for future)
+    favicon.svg
+vercel.json
+```
+
+## Design
+
+- **Black** background, **white** text, **crimson** (`#e8485a`) accent
+- A deeper crimson (`#cf2338`) sits behind white button text so both directions clear
+  WCAG AA contrast
+- Fraunces (serif headings) + Inter (body), loaded from Google Fonts
+- Fully responsive; respects `prefers-reduced-motion`
+
+Photos are Steven's own, pulled from stevenhowardspeaks.com and calienteleadership.com.
+
+## Running locally
+
+```bash
+python3 -m http.server 4321
+```
+
+Then open <http://localhost:4321>.
+
+## Related sites
+
+- Caliente Leadership — calienteleadership.com
+- Humony Leadership — humonyleadership.com
+- Steven Howard Speaks — stevenhowardspeaks.com
+- Caliente Press — calientepress.com *(currently down — see note below)*
+
+### Note on calientepress.com
+
+As of 3 Aug 2026 the domain resolves to Bluehost (`50.6.42.95`) but HTTPS redirects to
+`/404.html` and serves a generic `*.bluehost.com` certificate instead of one for the
+domain. The DNS is fine — the domain is no longer pointed at its site directory in the
+Bluehost account. The site was archived working on 5 Jan 2026, so it broke sometime
+after that. This is a hosting-account fix, not a code fix.

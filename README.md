@@ -91,9 +91,14 @@ vercel.json
 
 ## Design
 
-- **Black** background, **white** text, **crimson** (`#e8485a`) accent
-- A deeper crimson (`#cf2338`) sits behind white button text so both directions clear
-  WCAG AA contrast
+- **Black** background, **white** text, **maroon** accent
+- Three accent tokens keep contrast honest against pure black:
+  `--accent #be4152` (headings, icons, rules), `--accent-hi #d4586a` (small labels and
+  hover, 5.4:1 so it clears WCAG AA), `--accent-btn #8e2438` (button fills, 8:1 with
+  white text)
+- No dashes: em dashes are kept out of the copy, and the decorative rules that sat
+  beside section labels were removed. Coaching-list bullets are dots, not dashes.
+  Hyphens remain in compound words (one-on-one, award-winning) since they're spelling.
 - Fraunces (serif headings) + Inter (body), loaded from Google Fonts
 - Fully responsive; respects `prefers-reduced-motion`
 

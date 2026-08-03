@@ -58,6 +58,33 @@ These were pulled from Steven's existing sites and should be checked with him:
 | Testimonials | Two authors he's worked with |
 | Contact | Modal inquiry form |
 
+## The opening animation
+
+On first open, a pen writes out "Steven Howard, writing and publishing coach" in a
+script face (Dancing Script) over black, then the overlay fades and hands the page over.
+The writing runs about 3.3 seconds; the whole thing is done in under four.
+
+How it works: each line is revealed left-to-right with an animated `clip-path`, and a
+pen SVG is moved to the leading edge of the reveal on every frame, with a small sine
+bob so the nib looks like it's forming letters.
+
+It deliberately stays out of the way:
+
+- **Runs once per browser session** (`sessionStorage`), so refreshing doesn't replay it.
+  To make it play on every single load, delete the `sh_intro_seen` check in the head
+  script and in `finish()`.
+- **Never runs for `prefers-reduced-motion`.**
+- **Never runs without JavaScript.** The decision is made by a tiny inline script in
+  `<head>` before first paint, which adds `html.intro-pending`. The CSS only shows the
+  overlay when that class is present, so no JS means no overlay and no flash.
+- **Skippable** by clicking anywhere, pressing Escape/Enter/Space, or the Skip button.
+- Scroll is locked while it plays and released the moment it ends. A 7-second hard stop
+  guarantees the page is never left covered.
+
+Note for anyone editing the pen: `offsetWidth` is `undefined` on SVG elements, so the
+nib offset is measured with `getBoundingClientRect().width`. Using `offsetWidth` there
+silently misplaces the pen.
+
 ## The inquiry form
 
 Clicking any "Apply to Work Together" button — or his email address in the footer

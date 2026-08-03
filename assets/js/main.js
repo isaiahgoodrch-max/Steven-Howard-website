@@ -308,3 +308,127 @@
   });
 
 })();
+
+/* =========================================================
+   INTRO — "Steven Howard, writing and publishing coach"
+   written out by a pen on first open (~3.3s, then fades).
+
+   The <html class="intro-pending"> decision is made by the
+   inline script in <head>, before first paint. This block
+   only runs the animation and then hands the page over.
+   ========================================================= */
+(function () {
+  'use strict';
+
+  var root  = document.documentElement;
+  var intro = document.getElementById('intro');
+  if (!intro) return;
+
+  // Head script decided against it (no JS storage, reduced motion, already seen).
+  if (!root.classList.contains('intro-pending')) {
+    intro.parentNode.removeChild(intro);
+    return;
+  }
+
+  var stage = document.getElementById('introStage');
+  var pen   = document.getElementById('introPen');
+  var skip  = document.getElementById('introSkip');
+  var nameSpan = intro.querySelector('.intro__line--name span');
+  var roleSpan = intro.querySelector('.intro__line--role span');
+
+  // Where the nib sits inside the 24x24 icon box.
+  var NIB_X = 4.2 / 24, NIB_Y = 21.4 / 24;
+
+  var finished = false;
+
+  function penTo(x, y) {
+    // NB: offsetWidth is undefined on SVG elements, so measure the box directly.
+    var size = pen.getBoundingClientRect().width || 52;
+    pen.style.transform =
+      'translate(' + (x - size * NIB_X) + 'px, ' + (y - size * NIB_Y) + 'px)';
+  }
+
+  /* Reveal one line left-to-right, walking the pen along the leading edge. */
+  function write(el, duration) {
+    return new Promise(function (resolve) {
+      var sr = stage.getBoundingClientRect();
+      var r  = el.getBoundingClientRect();
+      var x0 = r.left - sr.left;
+      var w  = r.width;
+      // Baseline sits a little above the bottom of the line box.
+      var y  = (r.top - sr.top) + r.height * 0.72;
+
+      var start = null;
+
+      function frame(now) {
+        if (finished) return resolve();
+        if (start === null) start = now;
+
+        var p = Math.min(1, (now - start) / duration);
+
+        el.style.clipPath = 'inset(0 ' + ((1 - p) * 100) + '% 0 0)';
+
+        // Small vertical bob so the nib looks like it's forming letters.
+        var bob = Math.sin(p * Math.PI * 11) * 2.2;
+        penTo(x0 + p * w, y + bob);
+
+        if (p < 1) requestAnimationFrame(frame);
+        else resolve();
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  function wait(ms) {
+    return new Promise(function (r) { setTimeout(r, ms); });
+  }
+
+  function finish() {
+    if (finished) return;
+    finished = true;
+
+    try { sessionStorage.setItem('sh_intro_seen', '1'); } catch (e) {}
+
+    pen.classList.remove('is-writing');
+    intro.classList.add('is-done');
+    root.classList.remove('intro-pending');   // unlocks scrolling
+
+    document.removeEventListener('keydown', onKey);
+    intro.removeEventListener('click', finish);
+
+    setTimeout(function () {
+      if (intro.parentNode) intro.parentNode.removeChild(intro);
+    }, 600);
+  }
+
+  function onKey(e) {
+    if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') finish();
+  }
+
+  document.addEventListener('keydown', onKey);
+  intro.addEventListener('click', finish);
+  if (skip) skip.addEventListener('click', finish);
+
+  function play() {
+    if (finished) return;
+    // Park the nib at the start of the first line before it appears.
+    var sr = stage.getBoundingClientRect();
+    var r  = nameSpan.getBoundingClientRect();
+    penTo(r.left - sr.left, (r.top - sr.top) + r.height * 0.72);
+    pen.classList.add('is-writing');
+
+    write(nameSpan, 1500)
+      .then(function () { return wait(180); })
+      .then(function () { return write(roleSpan, 1200); })
+      .then(function () { return wait(420); })
+      .then(finish);
+  }
+
+  // Measure only once the script font is really in, or widths will be wrong.
+  var ready = (document.fonts && document.fonts.ready) || Promise.resolve();
+  var timeout = new Promise(function (r) { setTimeout(r, 1200); });
+  Promise.race([ready, timeout]).then(play);
+
+  // Hard stop, in case a frame callback never lands (background tab, etc).
+  setTimeout(finish, 7000);
+})();

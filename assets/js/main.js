@@ -385,7 +385,8 @@
     var r  = el.getBoundingClientRect();
     var x  = r.left - sr.left;
     var top = r.top - sr.top;
-    return { x: x, top: top, y: top + r.height * 0.72, w: r.width, endX: x + r.width };
+    return { x: x, top: top, y: top + r.height * 0.72,
+             w: r.width, h: r.height, endX: x + r.width };
   }
 
   /* ---------------- movements ---------------- */
@@ -400,12 +401,23 @@
 
   /* Reveal a line while the pen rides the leading edge of the ink. */
   function writeLine(el, a, duration) {
+    // Nib travel has to scale with the type. Fixed pixel amounts vanish at
+    // large sizes, which is what made the pen look like it was sliding flat.
+    var big   = a.h * 0.052;
+    var small = a.h * 0.021;
+
     return tween(duration, function (t) {
       var p = flow(t);
+
+      // Slight stroke rhythm: speeds up and eases through the line the way a
+      // hand does. The wiggle is small enough that p stays monotonic.
+      p = Math.max(0, Math.min(1, p + Math.sin(p * Math.PI * 8) * 0.012));
+
       el.style.clipPath = 'inset(0 ' + ((1 - p) * 100) + '% 0 0)';
+
       // Two frequencies, so the bob reads as letterforms instead of a metronome.
-      var bob = Math.sin(p * Math.PI * 13) * 1.7 + Math.sin(p * Math.PI * 31) * 0.7;
-      var rot = -3 + Math.sin(p * Math.PI * 9) * 2.2;
+      var bob = Math.sin(p * Math.PI * 13) * big + Math.sin(p * Math.PI * 31) * small;
+      var rot = -4 + Math.sin(p * Math.PI * 9) * 4;
       penTo(a.x + p * a.w, a.y + bob, rot, 1);
     });
   }
@@ -473,11 +485,11 @@
     penTo(a1.x - 56, a1.y - 42, -17, 0);
 
     approach(a1)
-      .then(function () { return writeLine(nameSpan, a1, 1300); })
+      .then(function () { return writeLine(nameSpan, a1, 1450); })
       .then(function () {
         return travel({x: a1.endX, y: a1.y}, {x: a2.x, y: a2.y}, 460, a1.top - 14);
       })
-      .then(function () { return writeLine(roleSpan, a2, 1060); })
+      .then(function () { return writeLine(roleSpan, a2, 1150); })
       .then(function () { return liftAway({x: a2.endX, y: a2.y}); })
       .then(function () { return wait(220); })
       .then(finish);

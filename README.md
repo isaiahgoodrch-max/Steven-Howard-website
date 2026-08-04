@@ -62,7 +62,7 @@ These were pulled from Steven's existing sites and should be checked with him:
 
 On first open, a pen writes out "Steven Howard, writing and publishing coach" in a
 script face (Dancing Script) over black, then the overlay fades and hands the page over.
-The whole sequence runs about 3.7 seconds.
+The whole sequence runs about 4 seconds.
 
 Each line is revealed left-to-right with an animated `clip-path` while a pen SVG rides
 the leading edge of the ink. The motion is built to feel continuous rather than
@@ -72,7 +72,11 @@ mechanical:
 - lines are drawn at near-constant speed with **softened ends**, so nothing starts or
   stops dead (pure linear was what made the first version feel stiff)
 - the vertical bob mixes **two sine frequencies** so it reads as letterforms rather
-  than a metronome, and the pen tilts slightly as it goes
+  than a metronome, and the pen tilts as it goes. Crucially the amplitude is derived
+  from the line's own height (`a.h * 0.052`), not a fixed pixel value: hardcoded
+  amounts disappear at large type and make the nib look like it's sliding flat
+- speed carries a small **stroke rhythm** on top of the base easing, kept low enough
+  that progress stays monotonic
 - between lines the pen **lifts, arcs over the text it just wrote, and lands** at the
   start of the next one, rather than teleporting
 - at the end it **lifts away** off the top-right and fades

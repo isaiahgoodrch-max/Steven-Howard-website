@@ -505,6 +505,37 @@ a{ color:inherit; }
 .about__copy p{ color:var(--muted); font-size:16.5px; }
 .about__copy em{ color:#cfcfcf; font-style:italic; }
 
+.values__head{
+  font-size:19px;
+  margin:34px 0 4px;
+  padding-top:26px;
+  border-top:1px solid var(--line);
+  color:var(--white);
+}
+
+.values{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.values li{
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+  font-size:15.5px;
+  line-height:1.65;
+  color:var(--muted);
+}
+.values li:last-child{ border-bottom:0; }
+.values strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:17.5px;
+  font-weight:600;
+  color:var(--accent-hi);
+  margin-bottom:5px;
+  letter-spacing:-.005em;
+}
+
 .awards{
   list-style:none;
   margin:38px 0 0;
@@ -934,7 +965,6 @@ html.intro-pending, html.intro-pending body{ overflow:hidden; }
   opacity:0;
   pointer-events:none;
   will-change:transform;
-  transition:opacity .3s var(--ease);
   filter:drop-shadow(0 4px 12px rgba(0,0,0,.75));
 }
 .intro__pen-barrel{ fill:#e6e6e6; }

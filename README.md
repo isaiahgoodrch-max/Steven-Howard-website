@@ -62,11 +62,24 @@ These were pulled from Steven's existing sites and should be checked with him:
 
 On first open, a pen writes out "Steven Howard, writing and publishing coach" in a
 script face (Dancing Script) over black, then the overlay fades and hands the page over.
-The writing runs about 3.3 seconds; the whole thing is done in under four.
+The whole sequence runs about 3.7 seconds.
 
-How it works: each line is revealed left-to-right with an animated `clip-path`, and a
-pen SVG is moved to the leading edge of the reveal on every frame, with a small sine
-bob so the nib looks like it's forming letters.
+Each line is revealed left-to-right with an animated `clip-path` while a pen SVG rides
+the leading edge of the ink. The motion is built to feel continuous rather than
+mechanical:
+
+- the nib **flies in and settles** onto the page instead of popping into place
+- lines are drawn at near-constant speed with **softened ends**, so nothing starts or
+  stops dead (pure linear was what made the first version feel stiff)
+- the vertical bob mixes **two sine frequencies** so it reads as letterforms rather
+  than a metronome, and the pen tilts slightly as it goes
+- between lines the pen **lifts, arcs over the text it just wrote, and lands** at the
+  start of the next one, rather than teleporting
+- at the end it **lifts away** off the top-right and fades
+
+A note on that arc: a quadratic bezier only reaches halfway to its control point, so
+the control is derived from the apex we actually want (`cy = 2*apexY - 0.5*(y0+y1)`).
+Guessing an offset instead makes the nib drag straight through the finished line.
 
 It deliberately stays out of the way:
 

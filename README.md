@@ -60,42 +60,49 @@ These were pulled from Steven's existing sites and should be checked with him:
 
 ## The opening animation
 
-On first open, a pen writes out "Steven Howard, writing and publishing coach" in a
-script face (Dancing Script) over black, then the overlay fades and hands the page over.
-The whole sequence runs about 4 seconds.
+On first open, a pen writes out "Steven Howard, writing and publishing coach" over
+black, then the overlay fades and hands the page over. About 4 seconds.
 
-Each line is revealed left-to-right with an animated `clip-path` while a pen SVG rides
-the leading edge of the ink. The motion is built to feel continuous rather than
-mechanical:
+**The letters are not live text.** They're real Dancing Script outlines, extracted with
+fontTools and shaped with HarfBuzz (so the script connections and kerning are right),
+baked into `index.html` as SVG paths. That matters: it's what lets the pen sit on the
+*true curve* of each letter via `getPointAtLength`, moving up, down and around the way a
+hand does.
 
-- the nib **flies in and settles** onto the page instead of popping into place
-- lines are drawn at near-constant speed with **softened ends**, so nothing starts or
-  stops dead (pure linear was what made the first version feel stiff)
-- the vertical bob mixes **two sine frequencies** so it reads as letterforms rather
-  than a metronome, and the pen tilts as it goes. Crucially the amplitude is derived
-  from the line's own height (`a.h * 0.052`), not a fixed pixel value: hardcoded
-  amounts disappear at large type and make the nib look like it's sliding flat
-- speed carries a small **stroke rhythm** on top of the base easing, kept low enough
-  that progress stays monotonic
-- between lines the pen **lifts, arcs over the text it just wrote, and lands** at the
-  start of the next one, rather than teleporting
+An earlier version revealed each line with a straight `clip-path` wipe and bobbed the
+pen along a sine wave to fake it. It never looked like writing, because the ink was
+appearing behind a hard vertical edge no matter what the pen did. Don't go back to that.
+
+How the ink appears: each glyph is its own `<clipPath>`, and a thick stroke travels that
+glyph's outline via `stroke-dashoffset`. Clipped to the letter, the stroke fills the
+shape in as the pen moves through it.
+
+The rest of the motion:
+
+- the nib **flies in and settles** onto the page rather than popping into place
+- lines draw at near-constant speed with **softened ends**, so nothing starts or stops
+  dead
+- the pen **leans with the stroke direction** (tangent of the path, heavily damped so it
+  doesn't spin through loops)
+- between lines it **lifts, arcs over the words it just wrote, and lands** at the start
+  of the next one. A quadratic bezier only reaches halfway to its control point, so the
+  control is derived from the apex we want (`cy = 2*apexY - 0.5*(y0+y1)`); guessing an
+  offset drags the nib straight through the finished line
 - at the end it **lifts away** off the top-right and fades
 
-A note on that arc: a quadratic bezier only reaches halfway to its control point, so
-the control is derived from the apex we actually want (`cy = 2*apexY - 0.5*(y0+y1)`).
-Guessing an offset instead makes the nib drag straight through the finished line.
+To change the wording or font, see `tools/generate-handwriting.py`.
 
 It deliberately stays out of the way:
 
 - **Runs once per browser session** (`sessionStorage`), so refreshing doesn't replay it.
-  To make it play on every single load, delete the `sh_intro_seen` check in the head
-  script and in `finish()`.
+  To play it on every load, delete the `sh_intro_seen` check in the head script and in
+  `finish()`.
 - **Never runs for `prefers-reduced-motion`.**
 - **Never runs without JavaScript.** The decision is made by a tiny inline script in
   `<head>` before first paint, which adds `html.intro-pending`. The CSS only shows the
   overlay when that class is present, so no JS means no overlay and no flash.
 - **Skippable** by clicking anywhere, pressing Escape/Enter/Space, or the Skip button.
-- Scroll is locked while it plays and released the moment it ends. A 7-second hard stop
+- Scroll is locked while it plays and released the moment it ends. An 8-second hard stop
   guarantees the page is never left covered.
 
 Note for anyone editing the pen: `offsetWidth` is `undefined` on SVG elements, so the

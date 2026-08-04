@@ -936,28 +936,30 @@ html.intro-pending, html.intro-pending body{ overflow:hidden; }
 
 .intro__line{
   margin:0;
-  font-family:"Dancing Script", "Segoe Script", cursive;
-  line-height:1.25;
-  white-space:nowrap;
+  display:flex;
+  justify-content:center;
 }
-.intro__line span{
-  display:inline-block;
-  /* revealed left-to-right by JS */
-  clip-path:inset(0 100% 0 0);
-}
+.intro__line--role{ margin-top:2px; }
 
-.intro__line--name{
-  font-size:clamp(44px, 11vw, 132px);
-  font-weight:700;
-  color:var(--white);
-  letter-spacing:.005em;
+/* Real letterform outlines. Each glyph clips a thick stroke that travels
+   its own outline, so ink fills in along the shape rather than behind a
+   straight vertical wipe. */
+.hw{
+  display:block;
+  height:auto;
+  overflow:visible;
 }
-.intro__line--role{
-  font-size:clamp(20px, 4.6vw, 54px);
-  font-weight:500;
-  color:var(--accent-hi);
-  margin-top:6px;
+.hw .ink{
+  fill:none;
+  stroke-width:190;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
+.hw--name{ width:clamp(290px, 64vw, 800px); }
+.hw--name .ink{ stroke:var(--white); }
+
+.hw--role{ width:clamp(228px, 48vw, 600px); }
+.hw--role .ink{ stroke:var(--accent-hi); }
 
 .intro__pen{
   position:absolute; top:0; left:0;

@@ -310,12 +310,18 @@
 })();
 
 /* =========================================================
-   INTRO — "Steven Howard, writing and publishing coach"
-   written out by a pen on first open.
+   INTRO — a pen writes "Steven Howard, writing and
+   publishing coach" on first open (~4s), then hands over.
+
+   The letters are real Dancing Script outlines (extracted
+   with fontTools, shaped with HarfBuzz). Each glyph clips a
+   thick stroke that travels its own outline, so the ink
+   fills along the letter shape — and the pen can sit on the
+   true curve via getPointAtLength instead of sliding along a
+   straight wipe.
 
    The <html class="intro-pending"> decision is made by the
-   inline script in <head>, before first paint. This block
-   only runs the animation and then hands the page over.
+   inline script in <head>, before first paint.
    ========================================================= */
 (function () {
   'use strict';
@@ -324,41 +330,34 @@
   var intro = document.getElementById('intro');
   if (!intro) return;
 
-  // Head script decided against it (no JS storage, reduced motion, already seen).
   if (!root.classList.contains('intro-pending')) {
     intro.parentNode.removeChild(intro);
     return;
   }
 
-  var stage    = document.getElementById('introStage');
-  var pen      = document.getElementById('introPen');
-  var skip     = document.getElementById('introSkip');
-  var nameSpan = intro.querySelector('.intro__line--name span');
-  var roleSpan = intro.querySelector('.intro__line--role span');
+  var stage = document.getElementById('introStage');
+  var pen   = document.getElementById('introPen');
+  var skip  = document.getElementById('introSkip');
 
-  // Where the nib sits inside the 24x24 icon box.
   var NIB_X = 4.2 / 24, NIB_Y = 21.4 / 24;
-
   var finished = false;
 
   /* ---------------- easing ---------------- */
-
-  // Near-constant speed with softened ends, so a line doesn't start or
-  // stop dead. Pure linear is what made this feel mechanical.
-  function flow(t)      { return t * 0.68 + (t * t * (3 - 2 * t)) * 0.32; }
+  function flow(t)      { return t * 0.72 + (t * t * (3 - 2 * t)) * 0.28; }
   function easeOut(t)   { return 1 - Math.pow(1 - t, 3); }
   function easeInOut(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
 
   /* ---------------- pen ---------------- */
 
   // NB: offsetWidth is undefined on SVG elements, so measure the box directly.
-  function penSize() { return pen.getBoundingClientRect().width || 52; }
+  function penSize() { return pen.getBoundingClientRect().width || 64; }
 
   function penTo(x, y, rot, alpha) {
     var s = penSize();
     pen.style.transform =
       'translate(' + (x - s * NIB_X) + 'px, ' + (y - s * NIB_Y) + 'px)' +
-      ' rotate(' + (rot || 0) + 'deg)';
+      ' rotate(' + rot + 'deg)';
     if (alpha !== undefined) pen.style.opacity = String(alpha);
   }
 
@@ -379,53 +378,89 @@
 
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
-  /* Start and end of a line, in stage coordinates. */
-  function anchors(el) {
-    var sr = stage.getBoundingClientRect();
-    var r  = el.getBoundingClientRect();
-    var x  = r.left - sr.left;
-    var top = r.top - sr.top;
-    return { x: x, top: top, y: top + r.height * 0.72,
-             w: r.width, h: r.height, endX: x + r.width };
+  /* ---------------- line setup ---------------- */
+
+  function buildLine(sel) {
+    var svg   = intro.querySelector(sel);
+    var paths = [].slice.call(svg.querySelectorAll('defs path'));
+    var inks  = [].slice.call(svg.querySelectorAll('.ink'));
+    var lens  = paths.map(function (p) { return p.getTotalLength(); });
+    var total = lens.reduce(function (a, b) { return a + b; }, 0);
+
+    inks.forEach(function (u, i) {
+      u.style.strokeDasharray  = lens[i];
+      u.style.strokeDashoffset = lens[i];   // hidden until written
+    });
+
+    return { svg: svg, paths: paths, inks: inks, lens: lens, total: total };
+  }
+
+  /* Map a point in SVG user units to stage pixels. The glyph paths live in
+     <defs> so they have no CTM of their own — use the <svg> root, which
+     shares their coordinate system. */
+  function toStage(line, pt) {
+    var m  = line.svg.getScreenCTM();
+    var sp = line.svg.createSVGPoint();
+    sp.x = pt.x; sp.y = pt.y;
+    var scr = sp.matrixTransform(m);
+    var sr  = stage.getBoundingClientRect();
+    return { x: scr.x - sr.left, y: scr.y - sr.top };
+  }
+
+  function pointAt(line, idx, len) {
+    return toStage(line, line.paths[idx].getPointAtLength(len));
+  }
+
+  /* Pen angle leans with the stroke direction, heavily damped so it doesn't
+     spin through loops. */
+  function angleAt(line, idx, len) {
+    var path = line.paths[idx];
+    var L    = line.lens[idx];
+    var a = path.getPointAtLength(clamp(len - 12, 0, L));
+    var b = path.getPointAtLength(clamp(len + 12, 0, L));
+    var deg = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+    return -6 + clamp(deg * 0.10, -13, 13);
+  }
+
+  function lineStart(line) {
+    return { p: pointAt(line, 0, 0), a: angleAt(line, 0, 0) };
+  }
+  function lineEnd(line) {
+    var last = line.paths.length - 1;
+    return { p: pointAt(line, last, line.lens[last]), a: angleAt(line, last, line.lens[last]) };
   }
 
   /* ---------------- movements ---------------- */
 
-  /* The nib flies in and settles onto the page rather than popping into place. */
-  function approach(a) {
+  function approach(target) {
     return tween(340, function (t) {
       var e = easeOut(t);
-      penTo(a.x - 56 * (1 - e), a.y - 42 * (1 - e), -17 + 14 * e, e);
+      penTo(target.p.x - 60 * (1 - e), target.p.y - 46 * (1 - e), -19 + (target.a + 19) * e, e);
     });
   }
 
-  /* Reveal a line while the pen rides the leading edge of the ink. */
-  function writeLine(el, a, duration) {
-    // Nib travel has to scale with the type. Fixed pixel amounts vanish at
-    // large sizes, which is what made the pen look like it was sliding flat.
-    var big   = a.h * 0.052;
-    var small = a.h * 0.021;
-
+  /* Ink fills glyph by glyph; the pen rides the actual outline. */
+  function writeLine(line, duration) {
     return tween(duration, function (t) {
-      var p = flow(t);
+      var target = flow(t) * line.total;
+      var acc = 0, idx = 0, at = 0;
 
-      // Slight stroke rhythm: speeds up and eases through the line the way a
-      // hand does. The wiggle is small enough that p stays monotonic.
-      p = Math.max(0, Math.min(1, p + Math.sin(p * Math.PI * 8) * 0.012));
+      for (var i = 0; i < line.lens.length; i++) {
+        var L    = line.lens[i];
+        var done = clamp(target - acc, 0, L);
+        line.inks[i].style.strokeDashoffset = String(L - done);
+        if (done > 0) { idx = i; at = done; }
+        acc += L;
+      }
 
-      el.style.clipPath = 'inset(0 ' + ((1 - p) * 100) + '% 0 0)';
-
-      // Two frequencies, so the bob reads as letterforms instead of a metronome.
-      var bob = Math.sin(p * Math.PI * 13) * big + Math.sin(p * Math.PI * 31) * small;
-      var rot = -4 + Math.sin(p * Math.PI * 9) * 4;
-      penTo(a.x + p * a.w, a.y + bob, rot, 1);
+      var p = pointAt(line, idx, at);
+      penTo(p.x, p.y, angleAt(line, idx, at), 1);
     });
   }
 
-  /* Lift off, arc across, and land at the start of the next line.
+  /* Lift, arc over what was just written, land on the next line.
      A quadratic curve only reaches halfway to its control point, so derive
-     the control from the apex we actually want rather than guessing an
-     offset — otherwise the nib drags across the line it just wrote. */
+     the control from the apex we want or the nib drags through the text. */
   function travel(from, to, duration, apexY) {
     var cx = (from.x + to.x) / 2;
     var cy = 2 * apexY - 0.5 * (from.y + to.y);
@@ -434,17 +469,16 @@
       penTo(
         n*n * from.x + 2*n*e * cx + e*e * to.x,
         n*n * from.y + 2*n*e * cy + e*e * to.y,
-        -3 - Math.sin(e * Math.PI) * 15,   // tilts as it lifts
+        -6 - Math.sin(e * Math.PI) * 16,
         1
       );
     });
   }
 
-  /* Pen leaves the frame instead of blinking out. */
   function liftAway(from) {
-    return tween(400, function (t) {
+    return tween(420, function (t) {
       var e = easeInOut(t);
-      penTo(from.x + 60 * e, from.y - 48 * e, -3 - 22 * e, 1 - e);
+      penTo(from.x + 64 * e, from.y - 52 * e, -6 - 24 * e, 1 - e);
     });
   }
 
@@ -479,27 +513,29 @@
   function play() {
     if (finished) return;
 
-    var a1 = anchors(nameSpan);
-    var a2 = anchors(roleSpan);
+    var name = buildLine('.hw--name');
+    var role = buildLine('.hw--role');
+    intro.classList.add('is-ready');
 
-    penTo(a1.x - 56, a1.y - 42, -17, 0);
+    var nStart = lineStart(name), nEnd = lineEnd(name);
+    var rStart = lineStart(role), rEnd = lineEnd(role);
 
-    approach(a1)
-      .then(function () { return writeLine(nameSpan, a1, 1450); })
-      .then(function () {
-        return travel({x: a1.endX, y: a1.y}, {x: a2.x, y: a2.y}, 460, a1.top - 14);
-      })
-      .then(function () { return writeLine(roleSpan, a2, 1150); })
-      .then(function () { return liftAway({x: a2.endX, y: a2.y}); })
-      .then(function () { return wait(220); })
+    var apex = Math.min(nStart.p.y, nEnd.p.y) - name.svg.getBoundingClientRect().height * 0.30;
+
+    penTo(nStart.p.x - 60, nStart.p.y - 46, -19, 0);
+
+    approach(nStart)
+      .then(function () { return writeLine(name, 1650); })
+      .then(function () { return travel(nEnd.p, rStart.p, 480, apex); })
+      .then(function () { return writeLine(role, 1350); })
+      .then(function () { return liftAway(rEnd.p); })
+      .then(function () { return wait(240); })
       .then(finish);
   }
 
-  // Measure only once the script font is really in, or widths will be wrong.
-  var ready   = (document.fonts && document.fonts.ready) || Promise.resolve();
-  var timeout = new Promise(function (r) { setTimeout(r, 1200); });
-  Promise.race([ready, timeout]).then(play);
+  // Nothing to wait on for fonts now — the letters are baked-in outlines.
+  requestAnimationFrame(play);
 
-  // Hard stop, in case a frame callback never lands (background tab, etc).
+  // Hard stop, so the page is never left covered.
   setTimeout(finish, 8000);
 })();

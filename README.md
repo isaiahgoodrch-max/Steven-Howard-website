@@ -109,6 +109,22 @@ Note for anyone editing the pen: `offsetWidth` is `undefined` on SVG elements, s
 nib offset is measured with `getBoundingClientRect().width`. Using `offsetWidth` there
 silently misplaces the pen.
 
+## What we work on (click to expand)
+
+Eight compact buttons, each showing only its name. Clicking one opens its definition
+in a panel directly below the grid, not a floating popover, which would get cramped on
+narrow screens. Clicking the same tile again closes it; picking another swaps the
+content; Escape and the close button both dismiss it.
+
+Progressive enhancement: each description lives in the markup inside its tile. The
+inline `<head>` script adds `html.js`, and `.js .tile__desc { display:none }` is what
+hides them. With JavaScript off, the tiles simply render with their descriptions
+visible, the way they did before, so nothing is lost.
+
+Accessibility: the tiles are real `<button>` elements with `aria-expanded` and
+`aria-controls`, and the panel is a `role="region"` with `aria-live="polite"` so the
+change is announced.
+
 ## The inquiry form
 
 Clicking any "Apply to Work Together" button — or his email address in the footer

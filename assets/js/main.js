@@ -86,6 +86,53 @@
   }
 
   /* =======================================================
+     WHAT WE WORK ON — compact tiles, definition below
+     ======================================================= */
+  var workGrid = $('#workGrid');
+  if (workGrid) {
+    var detail  = $('#workDetail');
+    var dTitle  = $('.work-detail__title', detail);
+    var dBody   = $('.work-detail__body', detail);
+    var dClose  = $('.work-detail__close', detail);
+    var tiles   = $$('.tile', workGrid);
+    var openTile = null;
+
+    var closeDetail = function (refocus) {
+      tiles.forEach(function (t) {
+        t.classList.remove('is-active');
+        t.setAttribute('aria-expanded', 'false');
+      });
+      detail.hidden = true;
+      if (refocus && openTile) openTile.focus();
+      openTile = null;
+    };
+
+    tiles.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (openTile === btn) { closeDetail(false); return; }   // click again to close
+
+        tiles.forEach(function (t) {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-expanded', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-expanded', 'true');
+
+        dTitle.textContent = $('.tile__name', btn).textContent.trim();
+        dBody.textContent  = $('.tile__desc', btn).textContent.trim();
+        detail.hidden = false;
+        openTile = btn;
+      });
+    });
+
+    if (dClose) dClose.addEventListener('click', function () { closeDetail(true); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !detail.hidden) closeDetail(true);
+    });
+  }
+
+  /* =======================================================
      MODAL
      ======================================================= */
   var modal      = $('#contactModal');

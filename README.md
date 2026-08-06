@@ -142,11 +142,25 @@ vercel.json
 
 ## Design
 
-- **Black** background, **white** text, **maroon** accent
-- Three accent tokens keep contrast honest against pure black:
-  `--accent #be4152` (headings, icons, rules), `--accent-hi #d4586a` (small labels and
-  hover, 5.4:1 so it clears WCAG AA), `--accent-btn #8e2438` (button fills, 8:1 with
-  white text)
+- **White** background, **near-black** type (`#141210`), **maroon** accent
+- Colour is driven entirely by the variables in `:root`. They're named for their role
+  (`--bg`, `--bg-alt`, `--surface`, `--text`, `--muted`) rather than for a literal
+  colour, so the theme can be retuned without the names becoming lies.
+- Three accent tokens keep contrast honest. Note these are tuned for a *light*
+  background, and the relationship inverts from the earlier dark version: the
+  small-text variant is now **darker** than the base, not lighter.
+
+  | token | value | use | contrast |
+  |---|---|---|---|
+  | `--accent` | `#be4152` | headings, icons, rules | 5.2:1 on white |
+  | `--accent-hi` | `#a02e44` | small labels, hover | 6.6:1 on white |
+  | `--accent-btn` | `#8e2438` | button fills | 8.0:1 with white text |
+
+- The **hero portrait was shot on a black backdrop**. On the old dark theme it melted
+  into the page; on white it's presented as a deliberate dark rounded tile. Don't add
+  a fade-to-black on the edges here, which is what the old theme did, because against
+  white it paints a hard black edge instead of blending.
+- Cards and tiles carry a soft `--shadow`; on white, borders alone read flat.
 - No dashes: em dashes are kept out of the copy, and the decorative rules that sat
   beside section labels were removed. Coaching-list bullets are dots, not dashes.
   Hyphens remain in compound words (one-on-one, award-winning) since they're spelling.

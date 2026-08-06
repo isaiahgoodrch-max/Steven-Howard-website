@@ -185,6 +185,21 @@ vercel.json
 
 Photos are Steven's own, pulled from stevenhowardspeaks.com and calienteleadership.com.
 
+## Mobile
+
+Audited at 320px, 390px and 768px. No horizontal overflow at any width, every
+interactive element meets the 44px touch-target minimum, and the nav menu, the
+click-to-expand tiles and the modal were all exercised rather than eyeballed.
+
+Two fixes worth remembering, because both are easy to reintroduce:
+
+- **Form inputs are 16px on small screens.** iOS Safari zooms the entire page when a
+  focused input is under 16px, which yanks the layout around mid-form. Don't drop the
+  contact fields below 16px in the mobile media query.
+- **The intro type is sized with `min(84vw, 780px)`, not `clamp()` with a px floor.**
+  A `clamp(290px, ...)` floor is wider than the space available on a 320px phone and
+  pushed the animation off-screen.
+
 ## Running locally
 
 ```bash

@@ -142,13 +142,9 @@ The duplicate run is `aria-hidden="true"` with `tabindex="-1"`, so screen reader
 the tab order see each book once, not twice.
 
 Links carry `rel="noopener noreferrer sponsored"`. These are Amazon Associates links
-(tags `caliente-20` and `calienteleder-20`).
-
-**Note:** a visible "As an Amazon Associate, Steven earns from qualifying purchases."
-disclosure was added and then removed at the client's request (6 Aug 2026). Amazon's
-Associates Operating Agreement requires that statement wherever affiliate links appear,
-and the FTC expects disclosure of the material connection, so this is worth revisiting
-with Steven before launch. The `rel="sponsored"` attribute is still in place.
+(tags `caliente-20` and `calienteleder-20`), which is why the section ends with the
+required "As an Amazon Associate, Steven earns from qualifying purchases." disclosure.
+Amazon's operating agreement requires that statement wherever affiliate links appear.
 
 Covers are self-hosted in `assets/img/books/<ASIN>.jpg` rather than hotlinked, so the
 shelf can't break when Amazon rotates an image URL. They were pulled from

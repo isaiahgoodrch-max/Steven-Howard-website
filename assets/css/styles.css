@@ -1106,3 +1106,95 @@ body.intro-lock{ overflow:hidden; }
 @media (prefers-reduced-motion:reduce){
   .intro{ display:none !important; }
 }
+
+/* =========================================================
+   BOOKS CAROUSEL
+   Continuous right-to-left marquee. Two identical runs sit
+   side by side and the track slides exactly one run width,
+   so the reset is invisible.
+   ========================================================= */
+.books{
+  padding:96px 0;
+  background:var(--bg-alt);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+
+.books .section__lede{ margin-bottom:44px; }
+
+.books__viewport{
+  position:relative;
+  width:100%;
+  /* fade the covers out at both edges instead of cutting them dead */
+  -webkit-mask-image:linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+          mask-image:linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+.books__track{
+  display:flex;
+  width:max-content;
+  animation:booksScroll 62s linear infinite;
+}
+/* pause on hover, and on keyboard focus so tabbing doesn't chase a moving target */
+.books__viewport:hover .books__track,
+.books__track:focus-within{ animation-play-state:paused; }
+
+.books__run{
+  display:flex;
+  gap:26px;
+  padding-right:26px;
+}
+
+@keyframes booksScroll{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(-50%,0,0); }   /* exactly one run */
+}
+
+.books__item{
+  flex:0 0 auto;
+  display:block;
+  width:150px;
+  border-radius:6px;
+  overflow:hidden;
+  background:var(--surface);
+  box-shadow:0 2px 6px rgba(20,18,16,.10), 0 10px 24px rgba(20,18,16,.10);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.books__item img{
+  width:100%; height:auto; display:block;
+  aspect-ratio:333/500;
+  object-fit:cover;
+}
+.books__item:hover,
+.books__item:focus-visible{
+  transform:translateY(-8px) scale(1.03);
+  box-shadow:0 6px 14px rgba(20,18,16,.16), 0 18px 40px rgba(20,18,16,.18);
+}
+
+.books__note{
+  margin:38px 0 0;
+  font-size:12.5px;
+  color:var(--muted-2);
+}
+
+@media (max-width:900px){
+  .books{ padding:72px 0; }
+  .books__item{ width:124px; }
+  .books__run{ gap:18px; padding-right:18px; }
+  .books__track{ animation-duration:48s; }
+}
+@media (max-width:620px){
+  .books__item{ width:108px; }
+}
+
+/* No motion: stop the marquee and let people scroll the shelf by hand. */
+@media (prefers-reduced-motion:reduce){
+  .books__track{ animation:none; }
+  .books__viewport{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    -webkit-mask-image:none; mask-image:none;
+  }
+  .books__run[aria-hidden="true"]{ display:none; }
+}

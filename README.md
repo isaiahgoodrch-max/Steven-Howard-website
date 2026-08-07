@@ -125,6 +125,32 @@ Accessibility: the tiles are real `<button>` elements with `aria-expanded` and
 `aria-controls`, and the panel is a `role="region"` with `aria-live="polite"` so the
 change is announced.
 
+## Books carousel
+
+A continuous right-to-left marquee of 19 covers, above the testimonials. Hover pauses
+it, and so does keyboard focus, so tabbing doesn't chase a moving target. Each cover
+links to its Amazon page in a new tab.
+
+How the loop is seamless: the same 19 covers are rendered **twice**, side by side, and
+the track animates `translateX(0)` to `translateX(-50%)`, which is exactly one full run.
+The reset is therefore invisible. If you add or remove a book you must change it in
+*both* runs or the two halves stop matching and the loop visibly jumps.
+
+The duplicate run is `aria-hidden="true"` with `tabindex="-1"`, so screen readers and
+the tab order see each book once, not twice.
+
+Links carry `rel="noopener noreferrer sponsored"`. These are Amazon Associates links
+(tags `caliente-20` and `calienteleder-20`), which is why the section ends with the
+required "As an Amazon Associate, Steven earns from qualifying purchases." disclosure.
+Amazon's operating agreement requires that statement wherever affiliate links appear.
+
+Covers are self-hosted in `assets/img/books/<ASIN>.jpg` rather than hotlinked, so the
+shelf can't break when Amazon rotates an image URL. They were pulled from
+`images-na.ssl-images-amazon.com/images/P/<ASIN>.01.LZZZZZZZ.jpg`.
+
+Under `prefers-reduced-motion` the animation stops entirely and the shelf becomes a
+normal horizontal scroller.
+
 ## The inquiry form
 
 Clicking any "Apply to Work Together" button — or his email address in the footer

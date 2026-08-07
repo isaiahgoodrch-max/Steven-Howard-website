@@ -1,6 +1,6 @@
 # Steven Howard — Writing & Publishing Coach
 
-A one-page personal coaching site for Steven Howard, award-winning author of 22 books.
+A one-page personal coaching site for Steven Howard, award-winning author of 26 books.
 Positioned as personal coaching from an author, deliberately separate from the
 Caliente Press publishing-house brand.
 
@@ -49,7 +49,7 @@ These were pulled from Steven's existing sites and should be checked with him:
 | Section | Purpose |
 |---|---|
 | Hero | Portrait + positioning as a personal coach, not a publishing house |
-| Stats | 22 books · 10,000+ coached · 45 years · Top 200 Global Voices |
+| Books carousel | Scrolling shelf of covers, linking to Amazon |
 | Coaching | The two tracks — learn to write it / get it published |
 | What we work on | Eight concrete service areas |
 | How it works | Zoom, 50 minutes, flexible cadence, built around the manuscript |
@@ -127,7 +127,9 @@ change is announced.
 
 ## Books carousel
 
-A continuous right-to-left marquee of 19 covers, above the testimonials. Hover pauses
+A continuous right-to-left marquee of 19 covers, sitting directly under the hero.
+It replaced the old stats band (books / people coached / years / Top 200), which the
+client and Steven both disliked. Hover pauses
 it, and so does keyboard focus, so tabbing doesn't chase a moving target. Each cover
 links to its Amazon page in a new tab.
 
@@ -150,6 +152,13 @@ shelf can't break when Amazon rotates an image URL. They were pulled from
 
 Under `prefers-reduced-motion` the animation stops entirely and the shelf becomes a
 normal horizontal scroller.
+
+**Do not put `loading="lazy"` on these images.** Lazy loading keys off scroll position,
+and these covers never enter the viewport by scrolling; they arrive by CSS animation.
+With lazy on, roughly half the shelf slides past as empty white boxes.
+
+Steven has written **26** books; the shelf shows the 19 we have links for, so the copy
+says "here are some of them" rather than implying it is the complete set.
 
 ## The inquiry form
 

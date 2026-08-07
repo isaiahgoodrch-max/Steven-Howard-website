@@ -1131,12 +1131,6 @@ body.intro-lock{ overflow:hidden; }
   box-shadow:0 6px 14px rgba(20,18,16,.16), 0 18px 40px rgba(20,18,16,.18);
 }
 
-.books__note{
-  margin:38px 0 0;
-  font-size:12.5px;
-  color:var(--muted-2);
-}
-
 @media (max-width:900px){
   .books{ padding:72px 0; }
   .books__item{ width:124px; }

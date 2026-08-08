@@ -177,8 +177,11 @@ rather than silently dropping the message.
 
 ## Builder credit card
 
-The footer ends with a link-preview card for byisaiahgoodrich.com rather than a plain
-text credit: thumbnail, title, one-line description, and the domain.
+The footer ends with a link preview for byisaiahgoodrich.com: thumbnail, "Site by
+Isaiah Goodrich", a one-line description, and the domain.
+
+It is deliberately **not** a card. No border, no fill, no shadow, no padding. It sits
+on the footer background as plain content so it never competes with Steven's own.
 
 The thumbnail is the real Open Graph image from that site, copied into
 `assets/img/byisaiahgoodrich-preview.png` rather than hotlinked, so this footer cannot

@@ -722,31 +722,22 @@ a{ color:inherit; }
 .footer__meta{ text-align:right; }
 .footer__meta p{ margin:0; font-size:13px; color:var(--muted-2); line-height:1.7; }
 
-/* ---------- Builder credit card ---------- */
+/* ---------- Builder credit ---------- */
+/* Deliberately no card: no border, no fill, no shadow. It sits in the
+   footer as plain content so it never competes with Steven's own. */
 .sitecard{
   display:flex;
   align-items:center;
-  gap:16px;
-  max-width:440px;
-  margin-top:34px;
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:var(--surface);
+  gap:14px;
+  max-width:420px;
+  margin-top:30px;
   text-decoration:none;
-  transition:border-color .25s var(--ease), transform .25s var(--ease),
-             box-shadow .25s var(--ease);
-}
-.sitecard:hover{
-  border-color:var(--accent-line);
-  transform:translateY(-2px);
-  box-shadow:var(--shadow);
 }
 
 .sitecard__thumb{
-  flex:0 0 132px;
+  flex:0 0 116px;
   overflow:hidden;
-  border-radius:8px;
+  border-radius:6px;
   line-height:0;
 }
 .sitecard__thumb img{
@@ -758,20 +749,12 @@ a{ color:inherit; }
 
 .sitecard__body{ display:flex; flex-direction:column; min-width:0; }
 
-.sitecard__eyebrow{
-  font-size:10.5px;
-  font-weight:600;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--muted-2);
-}
 .sitecard__title{
   font-family:var(--serif);
-  font-size:15.5px;
+  font-size:15px;
   font-weight:600;
   color:var(--text);
   line-height:1.25;
-  margin-top:3px;
 }
 .sitecard__desc{
   font-size:12.5px;
@@ -783,13 +766,15 @@ a{ color:inherit; }
   font-size:12px;
   font-weight:500;
   color:var(--accent-hi);
-  margin-top:7px;
+  margin-top:6px;
 }
+.sitecard:hover .sitecard__domain{ text-decoration:underline; }
 
 @media (max-width:620px){
   .sitecard{ max-width:none; }
-  .sitecard__thumb{ flex-basis:104px; }
+  .sitecard__thumb{ flex-basis:96px; }
   .sitecard__desc{ display:none; }   /* title and domain carry it on a phone */
+}   /* title and domain carry it on a phone */
 }
 
 /* =========================================================

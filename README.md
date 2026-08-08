@@ -175,6 +175,26 @@ It has inline validation, a honeypot field for spam, keyboard focus trapping, an
 Escape-to-close. If the endpoint ever fails, it falls back to the visitor's mail client
 rather than silently dropping the message.
 
+## Builder credit card
+
+The footer ends with a link-preview card for byisaiahgoodrich.com rather than a plain
+text credit: thumbnail, title, one-line description, and the domain.
+
+The thumbnail is the real Open Graph image from that site, copied into
+`assets/img/byisaiahgoodrich-preview.png` rather than hotlinked, so this footer cannot
+break if that site changes or goes down. If the branding over there changes, re-pull it:
+
+```bash
+curl -sSL https://byisaiahgoodrich.com/images/og-image.png \
+  -o assets/img/byisaiahgoodrich-preview.png
+```
+
+The title and description are likewise copied from that site's OG tags, so they are a
+snapshot, not a live feed. A static site cannot read another site's metadata at runtime.
+
+On phones the description is hidden and the thumbnail shrinks; the title and domain
+carry it.
+
 ## Structure
 
 ```

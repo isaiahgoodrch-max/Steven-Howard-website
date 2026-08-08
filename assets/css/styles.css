@@ -722,6 +722,16 @@ a{ color:inherit; }
 .footer__meta{ text-align:right; }
 .footer__meta p{ margin:0; font-size:13px; color:var(--muted-2); line-height:1.7; }
 
+.footer__credit{ margin-top:6px !important; }
+.footer__credit a{
+  color:var(--accent-hi);
+  text-decoration:none;
+  border-bottom:1px solid var(--accent-line);
+  padding-bottom:1px;
+  transition:border-color .2s var(--ease), color .2s var(--ease);
+}
+.footer__credit a:hover{ border-bottom-color:var(--accent); }
+
 /* =========================================================
    MODAL
    ========================================================= */

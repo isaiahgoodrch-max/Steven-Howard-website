@@ -322,20 +322,27 @@
     var fallback = $('#bookCallFallback');
     if (fallback) fallback.href = url;           // always a working link
 
+    var openBooking = function (userInitiated) {
+      return loadCalendly().then(function (ready) {
+        if (ready && window.Calendly && window.Calendly.initPopupWidget) {
+          window.Calendly.initPopupWidget({ url: url });
+          return true;
+        }
+        // Only force a new tab on a real click; a popup blocker would eat an
+        // automatic one and the visitor would think nothing happened.
+        if (userInitiated) window.open(url, '_blank', 'noopener');
+        return false;
+      });
+    };
+
     var btn = $('#bookCallBtn');
-    if (btn) {
-      btn.onclick = function () {
-        loadCalendly().then(function (ready) {
-          if (ready && window.Calendly && window.Calendly.initPopupWidget) {
-            window.Calendly.initPopupWidget({ url: url });
-          } else {
-            window.open(url, '_blank', 'noopener');   // script blocked or offline
-          }
-        });
-      };
-    }
+    if (btn) btn.onclick = function () { openBooking(true); };
 
     successBox.scrollIntoView({ block: 'nearest' });
+
+    // Take them straight to the calendar, as soon as the widget is ready.
+    // The button stays as a backstop if this doesn't land.
+    setTimeout(function () { openBooking(false); }, 500);
   }
 
   function endpointConfigured() {

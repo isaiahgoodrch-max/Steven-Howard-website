@@ -825,6 +825,42 @@ a{ color:inherit; }
 .modal__body h2{ font-size:30px; margin-bottom:14px; }
 .modal__lede{ color:var(--muted); font-size:15.5px; margin-bottom:30px; }
 
+/* Who's on the other side of the form. Puts a face on it so it reads as
+   Steven answering, not a generic contact form. */
+.modal__who{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding-bottom:20px;
+  margin-bottom:22px;
+  border-bottom:1px solid var(--line);
+}
+.modal__avatar{
+  flex:0 0 58px;
+  width:58px; height:58px;
+  border-radius:50%;
+  object-fit:cover;
+  object-position:50% 16%;   /* frame the face, not the shoulders */
+  background:#111;
+  border:1px solid var(--line);
+}
+.modal__name{
+  margin:0;
+  font-family:var(--serif);
+  font-size:17px;
+  font-weight:600;
+  line-height:1.2;
+  color:var(--text);
+}
+.modal__role{
+  margin:3px 0 0;
+  font-size:11.5px;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted-2);
+}
+
 /* Two-step marker in the inquiry modal. */
 .modal__step{
   margin:0 0 8px;

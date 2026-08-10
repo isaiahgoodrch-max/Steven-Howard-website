@@ -166,8 +166,12 @@ Deliberate order: **details first, booking second**, so Steven never gets a call
 calendar without already knowing what the book is.
 
 1. Visitor clicks any "Apply to Work Together"
-2. **Step 1** collects name, email, focus, what they're writing, what they want to do
-3. **Step 2** appears on submit with a "Book your 50-minute call" button
+2. **Step 1** opens with Steven's photo, name and title, and the question "Why do you
+   want to work with me?" It collects name, email, focus, what they're writing, and what
+   they want to achieve with it. The face at the top is the point: it should read as
+   Steven answering, not a generic contact form.
+3. On submit the **Calendly popup opens on its own**, with a confirmation panel and a
+   "Book your 50-minute call" button behind it as a backstop
 
 Calendly notes:
 
@@ -178,6 +182,8 @@ Calendly notes:
   don't enter them twice
 - If the widget is blocked or fails, the button falls back to opening the booking page
   in a new tab, and there's a plain text link under it that always works
+- The automatic open never force-opens a tab. A popup blocker would swallow it and the
+  visitor would think nothing happened; only a real click on the button does that
 
 ## The inquiry form
 

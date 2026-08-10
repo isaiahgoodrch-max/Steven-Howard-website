@@ -26,7 +26,7 @@
     ACCESS_KEY: 'YOUR_WEB3FORMS_ACCESS_KEY', // <-- replace this
     FORMSPREE_URL: '',                       // e.g. https://formspree.io/f/xxxxxxx
     TO_EMAIL:   'stevenhoward@verizon.net',
-    SUBJECT:    'New coaching inquiry from your website',
+    SUBJECT:    'New coaching application',
 
     /* Booking. The flow is deliberately: details first, then book, so Steven
        never gets a call on the calendar without knowing what it's about. */
@@ -299,14 +299,14 @@
       'Name:  ' + d.name + '\n' +
       'Email: ' + d.email + '\n' +
       'Focus: ' + d.focus + '\n\n' +
-      'WHAT THEY\'RE WRITING\n' + d.writing + '\n\n' +
-      'WHAT THEY WANT TO DO WITH IT\n' + d.goal + '\n'
+      'WHAT THEY ARE WRITING\n' + d.writing + '\n\n' +
+      'WHAT THEY WANT TO ACHIEVE\n' + d.goal + '\n'
     );
   }
 
   function mailtoFallback(d) {
     var href = 'mailto:' + CONFIG.TO_EMAIL +
-      '?subject=' + encodeURIComponent(CONFIG.SUBJECT + ' — ' + d.name) +
+      '?subject=' + encodeURIComponent(CONFIG.SUBJECT + ': ' + d.name) +
       '&body=' + encodeURIComponent(bodyText(d));
     window.location.href = href;
   }
@@ -381,20 +381,25 @@
       url = 'https://api.web3forms.com/submit';
       payload = {
         access_key:  CONFIG.ACCESS_KEY,
-        subject:     CONFIG.SUBJECT + ' — ' + d.name,
+        subject:     CONFIG.SUBJECT + ': ' + d.name,
         from_name:   'Steven Howard Coaching Website',
+        /* So Steven can just hit reply and it reaches the applicant. The From
+           address is always the form service's own domain: sending as someone
+           else's address is spoofing, fails SPF/DKIM, and lands in spam. */
+        replyto:     d.email,
         name:        d.name,
         email:       d.email,
-        'Focus area':          d.focus,
-        'What they\'re writing': d.writing,
-        'What they want to do':  d.goal
+        'Focus area':                 d.focus,
+        'What they are writing':      d.writing,
+        'What they want to achieve':  d.goal
       };
     } else {
       url = CONFIG.FORMSPREE_URL;
       payload = {
         name: d.name, email: d.email, focus: d.focus,
         writing: d.writing, goal: d.goal,
-        _subject: CONFIG.SUBJECT + ' — ' + d.name
+        _replyto: d.email,
+        _subject: CONFIG.SUBJECT + ': ' + d.name
       };
     }
 

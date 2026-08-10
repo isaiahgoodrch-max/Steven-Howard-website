@@ -286,6 +286,42 @@ a{ color:inherit; }
 }
 
 /* =========================================================
+   STATS
+   ========================================================= */
+.stats{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--bg-alt);
+}
+.stats__grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.stat{
+  padding:38px 30px;
+  text-align:center;
+  border-right:1px solid var(--line);
+}
+.stat:last-child{ border-right:0; }
+.stat strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:38px;
+  font-weight:600;
+  letter-spacing:-.02em;
+  color:var(--accent);
+  line-height:1;
+  margin-bottom:9px;
+}
+.stat span{
+  font-size:13px;
+  color:var(--muted-2);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+/* =========================================================
    SECTIONS
    ========================================================= */
 .section{ padding:110px 0; }
@@ -1009,6 +1045,11 @@ body.modal-open{ overflow:hidden; }
   }
   .nav__links.is-open a{ padding:15px 0; border-bottom:1px solid var(--line); font-size:16px; }
   .nav__links.is-open a:last-child{ border-bottom:0; }
+
+  .stats__grid{ grid-template-columns:1fr 1fr; }
+  .stat{ padding:30px 20px; }
+  .stat:nth-child(2){ border-right:0; }
+  .stat:nth-child(-n+2){ border-bottom:1px solid var(--line); }
 
   .hero{ padding:130px 0 76px; }
   .hero__inner{ grid-template-columns:1fr; gap:44px; }

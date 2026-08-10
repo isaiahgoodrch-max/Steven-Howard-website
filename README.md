@@ -25,8 +25,14 @@ up and actually pressing send. Set up a real endpoint so nothing gets lost:
 ACCESS_KEY: 'YOUR_WEB3FORMS_ACCESS_KEY',   // <-- paste the key here
 ```
 
-Submissions then arrive in Steven's inbox with the sender's name, email, focus area,
-what they're writing, and what they want to do with it.
+Submissions then arrive in Steven's inbox showing **the applicant's name as the sender**,
+with **Reply-To set to their address**, so hitting reply goes straight back to them. The
+body carries their name, email, focus area, what they're writing, and what they want to
+achieve.
+
+The From address itself stays the form service's domain. Sending genuinely *as* the
+applicant's address would be spoofing: it fails SPF and DKIM, and lands in spam or gets
+rejected. Sender name plus Reply-To gives the same experience without that.
 
 (Formspree works too — set `PROVIDER: 'formspree'` and fill in `FORMSPREE_URL`.)
 

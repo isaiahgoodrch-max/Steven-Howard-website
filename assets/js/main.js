@@ -382,10 +382,12 @@
       payload = {
         access_key:  CONFIG.ACCESS_KEY,
         subject:     CONFIG.SUBJECT + ': ' + d.name,
-        from_name:   'Steven Howard Coaching Website',
-        /* So Steven can just hit reply and it reaches the applicant. The From
-           address is always the form service's own domain: sending as someone
-           else's address is spoofing, fails SPF/DKIM, and lands in spam. */
+        /* Show up in Steven's inbox as the applicant, not as the website, so
+           it reads like a note from them. The underlying From address stays
+           the form service's own domain: sending as someone else's address is
+           spoofing, fails SPF/DKIM and lands in spam. Reply-To is what makes
+           replying go straight back to them. */
+        from_name:   d.name,
         replyto:     d.email,
         name:        d.name,
         email:       d.email,

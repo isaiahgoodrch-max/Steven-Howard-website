@@ -531,11 +531,15 @@ a{ color:inherit; }
 .about__media{ position:sticky; top:110px; }
 .about__media > img{
   width:100%;
-  aspect-ratio:4/5;
-  object-fit:cover;
-  object-position:50% 20%;
   border-radius:var(--r);
   border:1px solid var(--line);
+}
+/* Landscape shot of him with the books; keep its own ratio rather than
+   cropping it to a portrait, which would cut the books out of frame. */
+.about__photo{
+  aspect-ratio:3/2;
+  object-fit:cover;
+  object-position:50% 30%;
 }
 .about__badges{ margin-top:18px; }
 .about__badges img{

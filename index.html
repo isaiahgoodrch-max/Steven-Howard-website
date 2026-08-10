@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=32">
+<link rel="stylesheet" href="assets/css/styles.css?v=34">
 
 <!-- Decide about the intro before first paint, so the page never flashes
      behind it. No JS (or reduced motion, or already seen) = no overlay. -->
@@ -142,9 +142,6 @@
         <a class="books__item" href="https://www.amazon.com/gp/product/1943702241/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702241&amp;linkCode=as2&amp;tag=caliente-20&amp;linkId=5d6bc13802736fdb565f6f6740b31890" target="_blank" rel="noopener noreferrer sponsored">
           <img src="assets/img/books/1943702241.jpg" alt="8 Keys to Becoming a Great Leader" width="333" height="500" decoding="async">
         </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/1943702381/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702381&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=eee4864fa7f55b0043839f3c0655537e" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/1943702381.jpg" alt="Strong Women Speak on Leadership, Success, and Living Well" width="333" height="500" decoding="async">
-        </a>
         <a class="books__item" href="https://www.amazon.com/gp/product/1943702233/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702233&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=f075ce51fd56804d4274d5f56f992ab7" target="_blank" rel="noopener noreferrer sponsored">
           <img src="assets/img/books/1943702233.jpg" alt="Better Decisions. Better Thinking. Better Outcomes." width="333" height="500" decoding="async">
         </a>
@@ -173,9 +170,6 @@
       <div class="books__run" aria-hidden="true">
         <a class="books__item" href="https://www.amazon.com/gp/product/1943702241/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702241&amp;linkCode=as2&amp;tag=caliente-20&amp;linkId=5d6bc13802736fdb565f6f6740b31890" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
           <img src="assets/img/books/1943702241.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/1943702381/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702381&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=eee4864fa7f55b0043839f3c0655537e" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/1943702381.jpg" alt="" width="333" height="500" decoding="async">
         </a>
         <a class="books__item" href="https://www.amazon.com/gp/product/1943702233/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702233&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=f075ce51fd56804d4274d5f56f992ab7" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
           <img src="assets/img/books/1943702233.jpg" alt="" width="333" height="500" decoding="async">
@@ -289,6 +283,22 @@
       <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
         <span class="tile__name">Prepublication</span>
         <span class="tile__desc">Typefaces, page layout, trim size, ISBNs, eBook and print-on-demand formats, cover design direction.</span>
+      </button>
+      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
+        <span class="tile__name">Launch strategy</span>
+        <span class="tile__desc">Pre-launch checklist through launch week, with the steps in the order they need to happen.</span>
+      </button>
+      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
+        <span class="tile__name">Reviews &amp; credibility</span>
+        <span class="tile__desc">How to get honest reviews, endorsements, and the early social proof that makes a book travel.</span>
+      </button>
+      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
+        <span class="tile__name">Book marketing</span>
+        <span class="tile__desc">Distribution options, SEO, social, press. Forty years of global branding experience, applied to your title.</span>
+      </button>
+      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
+        <span class="tile__name">Author platform</span>
+        <span class="tile__desc">Building the audience that will be there for this book, and the next one.</span>
       </button>
     </div>
 
@@ -406,7 +416,13 @@
 <section class="section section--alt" id="about">
   <div class="wrap about">
     <div class="about__media">
-      <img src="assets/img/steven-howard-portrait-sm.jpg" alt="Steven Howard" width="640" height="960" loading="lazy">
+      <img
+        class="about__photo"
+        src="assets/img/steven-with-books.jpg"
+        srcset="assets/img/steven-with-books-sm.jpg 700w, assets/img/steven-with-books.jpg 1400w"
+        sizes="(max-width: 900px) 90vw, 400px"
+        alt="Steven Howard holding two of his books, Better Decisions. Better Thinking. Better Outcomes. and Humony Leadership"
+        width="1400" height="933" loading="lazy">
       <div class="about__badges">
         <img src="assets/img/award-gold-medal.jpg" alt="Steven Howard holding his Nonfiction Authors Association Gold Medal for Humony Leadership" loading="lazy">
       </div>
@@ -502,6 +518,9 @@
         <a class="books__item" href="https://www.amazon.com/gp/product/981115015X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=981115015X&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0849f3a53a1a3e22ea88b398501dab39" target="_blank" rel="noopener noreferrer sponsored">
           <img src="assets/img/books/981115015X.jpg" alt="365 Motivational Quotes for Living a Determined Life" width="333" height="500" decoding="async">
         </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/1943702381/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702381&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=eee4864fa7f55b0043839f3c0655537e" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/1943702381.jpg" alt="Strong Women Speak on Leadership, Success, and Living Well" width="333" height="500" decoding="async">
+        </a>
       </div>
       <div class="books__run" aria-hidden="true">
         <a class="books__item" href="https://www.amazon.com/gp/product/B00HZRCNEW/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00HZRCNEW&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=704d6ff1cb4fe9d5b2c2ca22683422a4" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
@@ -530,6 +549,9 @@
         </a>
         <a class="books__item" href="https://www.amazon.com/gp/product/981115015X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=981115015X&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0849f3a53a1a3e22ea88b398501dab39" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
           <img src="assets/img/books/981115015X.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/1943702381/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702381&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=eee4864fa7f55b0043839f3c0655537e" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/1943702381.jpg" alt="" width="333" height="500" decoding="async">
         </a>
       </div>
     </div>
@@ -762,6 +784,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=32"></script>
+<script src="assets/js/main.js?v=34"></script>
 </body>
 </html>

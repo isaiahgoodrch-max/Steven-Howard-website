@@ -160,6 +160,25 @@ With lazy on, roughly half the shelf slides past as empty white boxes.
 Steven has written **26** books; the shelf shows the 19 we have links for, so the copy
 says "here are some of them" rather than implying it is the complete set.
 
+## The inquiry form (two steps, then Calendly)
+
+Deliberate order: **details first, booking second**, so Steven never gets a call on his
+calendar without already knowing what the book is.
+
+1. Visitor clicks any "Apply to Work Together"
+2. **Step 1** collects name, email, focus, what they're writing, what they want to do
+3. **Step 2** appears on submit with a "Book your 50-minute call" button
+
+Calendly notes:
+
+- URL lives in one place: `CONFIG.CALENDLY_URL` in `assets/js/main.js`
+- Their widget script is **lazy-loaded when the modal opens**, not on page load, so it
+  costs nothing to visitors who never apply
+- The booking URL is **prefilled** with the name and email they just typed, so they
+  don't enter them twice
+- If the widget is blocked or fails, the button falls back to opening the booking page
+  in a new tab, and there's a plain text link under it that always works
+
 ## The inquiry form
 
 Clicking any "Apply to Work Together" button — or his email address in the footer

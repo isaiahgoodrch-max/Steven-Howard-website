@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=28">
+<link rel="stylesheet" href="assets/css/styles.css?v=29">
 
 <!-- Decide about the intro before first paint, so the page never flashes
      behind it. No JS (or reduced motion, or already seen) = no overlay. -->
@@ -658,12 +658,17 @@
     </button>
 
     <div class="modal__body">
-      <p class="eyebrow">Work With Steven</p>
-      <h2 id="modalTitle">Tell me about your project</h2>
-      <p class="modal__lede">
-        A few details so I understand what you're working on. This goes straight to
-        my inbox and I read every one.
-      </p>
+      <!-- Step 1 heading; hidden once step 2 takes over so the two step
+           markers are never on screen together. -->
+      <div id="formIntro">
+        <p class="eyebrow">Work With Steven</p>
+        <p class="modal__step">Step 1 of 2 &middot; Your details</p>
+        <h2 id="modalTitle">Tell me about your project</h2>
+        <p class="modal__lede">
+          A few details first, so I come to our call already knowing what you're working
+          on. You'll pick a time on the next step.
+        </p>
+      </div>
 
       <form id="contactForm" novalidate>
         <div class="field">
@@ -716,18 +721,36 @@
         </p>
       </form>
 
+      <!-- Step 2: booking. Shown once the details are in, so Steven always has
+           the context before the call lands in his calendar. -->
       <div class="modal__success" id="formSuccess" hidden>
         <div class="modal__check" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
-        <h3>Thank you, it's on its way.</h3>
-        <p id="successMsg">Steven reads every note personally and will get back to you soon.</p>
-        <button class="btn btn--ghost" data-close>Close</button>
+
+        <p class="modal__step">Step 2 of 2 &middot; Pick a time</p>
+        <h3>Got it. Now book your call.</h3>
+        <p id="successMsg">
+          Steven has your details. Choose a 50-minute slot that suits you and he'll
+          come to the call having already read about your book.
+        </p>
+
+        <button class="btn btn--solid btn--block" id="bookCallBtn">
+          Book your 50-minute call
+        </button>
+
+        <p class="modal__fineprint">
+          <a id="bookCallFallback" href="#" target="_blank" rel="noopener noreferrer">
+            Or open the booking page in a new tab
+          </a>
+        </p>
+
+        <button class="btn btn--ghost btn--block" data-close>Close</button>
       </div>
     </div>
   </div>
 </div>
 
-<script src="assets/js/main.js?v=14"></script>
+<script src="assets/js/main.js?v=29"></script>
 </body>
 </html>

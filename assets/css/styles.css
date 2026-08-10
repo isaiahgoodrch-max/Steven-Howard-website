@@ -774,7 +774,6 @@ a{ color:inherit; }
   .sitecard{ max-width:none; }
   .sitecard__thumb{ flex-basis:96px; }
   .sitecard__desc{ display:none; }   /* title and domain carry it on a phone */
-}   /* title and domain carry it on a phone */
 }
 
 /* =========================================================
@@ -825,6 +824,20 @@ a{ color:inherit; }
 .modal__body{ padding:44px 44px 40px; }
 .modal__body h2{ font-size:30px; margin-bottom:14px; }
 .modal__lede{ color:var(--muted); font-size:15.5px; margin-bottom:30px; }
+
+/* Two-step marker in the inquiry modal. */
+.modal__step{
+  margin:0 0 8px;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted-2);
+}
+.modal__success .modal__step{ margin-top:4px; }
+.modal__success .btn--block + .modal__fineprint{ margin-top:12px; }
+.modal__success .btn--ghost{ margin-top:14px; }
+.modal__success .modal__fineprint a{ color:var(--accent-hi); }
 
 /* ---------- Form ---------- */
 .field{ margin-bottom:20px; }

@@ -26,7 +26,11 @@
     ACCESS_KEY: 'YOUR_WEB3FORMS_ACCESS_KEY', // <-- replace this
     FORMSPREE_URL: '',                       // e.g. https://formspree.io/f/xxxxxxx
     TO_EMAIL:   'stevenhoward@verizon.net',
-    SUBJECT:    'New coaching inquiry from your website'
+    SUBJECT:    'New coaching inquiry from your website',
+
+    /* Booking. The flow is deliberately: details first, then book, so Steven
+       never gets a call on the calendar without knowing what it's about. */
+    CALENDLY_URL: 'https://calendly.com/stevenhoward/from-writer-to-author'
   };
 
   // Exposed so the endpoint can be swapped at runtime if ever needed.
@@ -142,8 +146,46 @@
   var submitBtn  = $('#submitBtn');
   var lastFocus  = null;
 
+  /* Calendly's script is only pulled in when someone actually opens the modal,
+     so it costs nothing on page load. Resolves false if it can't load, and the
+     plain-link fallback takes over. */
+  var calendlyLoad = null;
+  function loadCalendly() {
+    if (calendlyLoad) return calendlyLoad;
+    calendlyLoad = new Promise(function (resolve) {
+      if (window.Calendly) return resolve(true);
+
+      var css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://assets.calendly.com/assets/external/widget.css';
+      document.head.appendChild(css);
+
+      var js = document.createElement('script');
+      js.src = 'https://assets.calendly.com/assets/external/widget.js';
+      js.async = true;
+      js.onload = function () { resolve(!!window.Calendly); };
+      js.onerror = function () { resolve(false); };
+      document.head.appendChild(js);
+
+      setTimeout(function () { resolve(!!window.Calendly); }, 6000); // don't hang forever
+    });
+    return calendlyLoad;
+  }
+
+  /* Prefill what they already typed so they don't enter it twice. */
+  function bookingUrl() {
+    var url = CONFIG.CALENDLY_URL;
+    var name = ($('#f-name') || {}).value || '';
+    var email = ($('#f-email') || {}).value || '';
+    var q = [];
+    if (name.trim()) q.push('name=' + encodeURIComponent(name.trim()));
+    if (email.trim()) q.push('email=' + encodeURIComponent(email.trim()));
+    return q.length ? url + (url.indexOf('?') === -1 ? '?' : '&') + q.join('&') : url;
+  }
+
   function openModal(e) {
     if (e) e.preventDefault();
+    loadCalendly();
     lastFocus = document.activeElement;
     modal.hidden = false;
     document.body.classList.add('modal-open');
@@ -155,6 +197,7 @@
 
   function closeModal() {
     modal.hidden = true;
+    // leave the completed state as-is; reopening should not wipe their booking step
     document.body.classList.remove('modal-open');
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
@@ -270,8 +313,28 @@
 
   function showSuccess(message) {
     form.hidden = true;
+    var intro = $('#formIntro');
+    if (intro) intro.hidden = true;   // step 1 heading gives way to step 2
     successBox.hidden = false;
     if (message && successMsg) successMsg.textContent = message;
+
+    var url = bookingUrl();
+    var fallback = $('#bookCallFallback');
+    if (fallback) fallback.href = url;           // always a working link
+
+    var btn = $('#bookCallBtn');
+    if (btn) {
+      btn.onclick = function () {
+        loadCalendly().then(function (ready) {
+          if (ready && window.Calendly && window.Calendly.initPopupWidget) {
+            window.Calendly.initPopupWidget({ url: url });
+          } else {
+            window.open(url, '_blank', 'noopener');   // script blocked or offline
+          }
+        });
+      };
+    }
+
     successBox.scrollIntoView({ block: 'nearest' });
   }
 

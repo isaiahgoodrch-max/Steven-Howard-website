@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=27">
+<link rel="stylesheet" href="assets/css/styles.css?v=28">
 
 <!-- Decide about the intro before first paint, so the page never flashes
      behind it. No JS (or reduced motion, or already seen) = no overlay. -->
@@ -124,7 +124,7 @@
   </div>
 </section>
 
-<!-- ================= BOOKS CAROUSEL ================= -->
+<!-- ================= BOOKS CAROUSEL 1: his own ================= -->
 <section class="books" id="books" aria-labelledby="booksHeading">
   <div class="wrap">
     <p class="eyebrow">The Bookshelf</p>
@@ -136,11 +136,8 @@
     </p>
   </div>
 
-  <!-- Two identical runs of the same covers make the loop seamless. The
-       second is hidden from assistive tech so the links aren't announced
-       twice. -->
   <div class="books__viewport">
-    <div class="books__track" id="booksTrack">
+    <div class="books__track">
       <div class="books__run">
         <a class="books__item" href="https://www.amazon.com/gp/product/1943702241/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1943702241&amp;linkCode=as2&amp;tag=caliente-20&amp;linkId=5d6bc13802736fdb565f6f6740b31890" target="_blank" rel="noopener noreferrer sponsored">
           <img src="assets/img/books/1943702241.jpg" alt="8 Keys to Becoming a Great Leader" width="333" height="500" decoding="async">
@@ -171,33 +168,6 @@
         </a>
         <a class="books__item" href="https://www.amazon.com/gp/product/0692389474/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0692389474&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=aa2ff799a8fd13963248cb52824da59f" target="_blank" rel="noopener noreferrer sponsored">
           <img src="assets/img/books/0692389474.jpg" alt="Marketing Words of Wisdom" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/B00HZRCNEW/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00HZRCNEW&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=704d6ff1cb4fe9d5b2c2ca22683422a4" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/B00HZRCNEW.jpg" alt="Project You: Living a Determined Life" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9810795017/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9810795017&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=d2ca0e3e4a937db5d36d38992f1032ee" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/9810795017.jpg" alt="Project You: Words of Wisdom" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/B01MR70UMS/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01MR70UMS&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0238e79b0cd049cfb7332b310e6b4e9b" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/B01MR70UMS.jpg" alt="Project You: Forgiveness Words of Wisdom" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9810794991/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9810794991&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=f37213e09bd5a3094f8d19b61fd9fe84" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/9810794991.jpg" alt="Project You: Fitness Words of Wisdom" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9811150192/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150192&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=361517499c521eeede5e8e01d80e2e1d" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/9811150192.jpg" alt="365 Motivational Quotes for Health &amp; Wellness" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9811150230/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150230&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=d11c6fdc725347415e82103bf28325da" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/9811150230.jpg" alt="365 Motivational Quotes for Emotional &amp; Mental Happiness" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9811150176/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150176&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=fd75ca3d593b9aa54d8d16b96d993aa9" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/9811150176.jpg" alt="365 Motivational Quotes for Self Motivation" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9811150214/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150214&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=169938411d7493e3fd8e69b46540ae6c" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/9811150214.jpg" alt="365 Motivational Quotes for Success" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/981115015X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=981115015X&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0849f3a53a1a3e22ea88b398501dab39" target="_blank" rel="noopener noreferrer sponsored">
-          <img src="assets/img/books/981115015X.jpg" alt="365 Motivational Quotes for Living a Determined Life" width="333" height="500" decoding="async">
         </a>
       </div>
       <div class="books__run" aria-hidden="true">
@@ -231,33 +201,6 @@
         <a class="books__item" href="https://www.amazon.com/gp/product/0692389474/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0692389474&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=aa2ff799a8fd13963248cb52824da59f" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
           <img src="assets/img/books/0692389474.jpg" alt="" width="333" height="500" decoding="async">
         </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/B00HZRCNEW/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00HZRCNEW&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=704d6ff1cb4fe9d5b2c2ca22683422a4" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/B00HZRCNEW.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9810795017/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9810795017&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=d2ca0e3e4a937db5d36d38992f1032ee" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/9810795017.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/B01MR70UMS/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01MR70UMS&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0238e79b0cd049cfb7332b310e6b4e9b" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/B01MR70UMS.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9810794991/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9810794991&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=f37213e09bd5a3094f8d19b61fd9fe84" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/9810794991.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9811150192/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150192&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=361517499c521eeede5e8e01d80e2e1d" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/9811150192.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9811150230/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150230&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=d11c6fdc725347415e82103bf28325da" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/9811150230.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9811150176/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150176&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=fd75ca3d593b9aa54d8d16b96d993aa9" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/9811150176.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/9811150214/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150214&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=169938411d7493e3fd8e69b46540ae6c" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/9811150214.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
-        <a class="books__item" href="https://www.amazon.com/gp/product/981115015X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=981115015X&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0849f3a53a1a3e22ea88b398501dab39" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/books/981115015X.jpg" alt="" width="333" height="500" decoding="async">
-        </a>
       </div>
     </div>
   </div>
@@ -273,7 +216,7 @@
 <section class="section" id="coaching">
   <div class="wrap">
     <p class="eyebrow">The Coaching</p>
-    <h2 class="section__title">Two things I help people do</h2>
+    <h2 class="section__title">Two things I help you accomplish</h2>
     <p class="section__lede">
       Most people who come to me need one of these, and usually, eventually, both.
       We start wherever you actually are.
@@ -282,7 +225,7 @@
     <div class="cards">
       <article class="card">
         <span class="card__num">01</span>
-        <h3>Learn to write it</h3>
+        <h3>Develop your writing</h3>
         <p>
           The blank page, the messy draft, the chapter that won't hold together.
           We work on structure first, because most first-time authors are trying to
@@ -300,7 +243,7 @@
 
       <article class="card">
         <span class="card__num">02</span>
-        <h3>Get it published</h3>
+        <h3>Publish your book</h3>
         <p>
           Publishing is a long series of decisions, and almost none of them are obvious
           the first time through. I've made all of them, 26 times over. I'll walk you
@@ -474,17 +417,16 @@
       <h2 class="section__title">Steven Howard</h2>
 
       <p class="lead">
-        Award-winning author of 26 leadership, business, and professional development
-        books, and editor of nine more in the <em>Project You</em> series.
+        Award-winning author of 26 leadership, business, professional and personal
+        development, decision-making, and societal change books.
       </p>
 
       <p>
-        I've been writing and publishing for 45 years, and coaching other people through
-        it for 25. Before that came a corporate career in senior sales and marketing
+        I've been writing and publishing for 22 years, and coaching other people through
+        it for 14. Before that came a corporate career in senior sales and marketing
         across Asia-Pacific, Australia, and North America, with roles at Texas
-        Instruments, <em>TIME</em> Magazine, BBDO, and Citibank. I've lived in the
-        United States, Singapore, Australia, and Mexico. I write from Southern
-        California now.
+        Instruments, TIME Magazine, BBDO, and Citibank. I've lived in the
+        United States, Singapore, Australia, and Mexico. I write from Arizona now.
       </p>
 
       <h3 class="values__head">What I believe</h3>
@@ -512,6 +454,84 @@
         <li><span>Three publishing awards</span> Independent Press, National Indie Excellence, and San Francisco Book Festival, for <em>Leadership Lessons from the Volkswagen Saga</em></li>
         <li><span>Global Communicator Award</span> Global Business News, 2021</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKS CAROUSEL 2: authors he has coached ============ -->
+<section class="books books--coached" id="coached" aria-labelledby="coachedHeading">
+  <div class="wrap">
+    <p class="eyebrow">Coached to Publication</p>
+    <h2 class="section__title" id="coachedHeading">Books and Authors I Have Coached</h2>
+    <p class="section__lede">
+      It is a great pleasure and honor to help other writers become authors. There's
+      nothing like the feeling of telling the world, "I'm an author!" To date, I have
+      helped writers produce and publish over a dozen books. And perhaps the most
+      gratifying aspect (for me) is that many of them have asked me to help them with
+      their second, third, and even fourth books.
+    </p>
+  </div>
+
+  <div class="books__viewport">
+    <div class="books__track">
+      <div class="books__run">
+        <a class="books__item" href="https://www.amazon.com/gp/product/B00HZRCNEW/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00HZRCNEW&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=704d6ff1cb4fe9d5b2c2ca22683422a4" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/B00HZRCNEW.jpg" alt="Project You: Living a Determined Life" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9810795017/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9810795017&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=d2ca0e3e4a937db5d36d38992f1032ee" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/9810795017.jpg" alt="Project You: Words of Wisdom" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/B01MR70UMS/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01MR70UMS&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0238e79b0cd049cfb7332b310e6b4e9b" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/B01MR70UMS.jpg" alt="Project You: Forgiveness Words of Wisdom" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9810794991/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9810794991&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=f37213e09bd5a3094f8d19b61fd9fe84" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/9810794991.jpg" alt="Project You: Fitness Words of Wisdom" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9811150192/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150192&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=361517499c521eeede5e8e01d80e2e1d" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/9811150192.jpg" alt="365 Motivational Quotes for Health &amp; Wellness" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9811150230/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150230&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=d11c6fdc725347415e82103bf28325da" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/9811150230.jpg" alt="365 Motivational Quotes for Emotional &amp; Mental Happiness" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9811150176/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150176&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=fd75ca3d593b9aa54d8d16b96d993aa9" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/9811150176.jpg" alt="365 Motivational Quotes for Self Motivation" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9811150214/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150214&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=169938411d7493e3fd8e69b46540ae6c" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/9811150214.jpg" alt="365 Motivational Quotes for Success" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/981115015X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=981115015X&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0849f3a53a1a3e22ea88b398501dab39" target="_blank" rel="noopener noreferrer sponsored">
+          <img src="assets/img/books/981115015X.jpg" alt="365 Motivational Quotes for Living a Determined Life" width="333" height="500" decoding="async">
+        </a>
+      </div>
+      <div class="books__run" aria-hidden="true">
+        <a class="books__item" href="https://www.amazon.com/gp/product/B00HZRCNEW/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00HZRCNEW&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=704d6ff1cb4fe9d5b2c2ca22683422a4" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/B00HZRCNEW.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9810795017/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9810795017&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=d2ca0e3e4a937db5d36d38992f1032ee" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/9810795017.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/B01MR70UMS/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01MR70UMS&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0238e79b0cd049cfb7332b310e6b4e9b" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/B01MR70UMS.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9810794991/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9810794991&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=f37213e09bd5a3094f8d19b61fd9fe84" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/9810794991.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9811150192/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150192&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=361517499c521eeede5e8e01d80e2e1d" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/9811150192.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9811150230/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150230&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=d11c6fdc725347415e82103bf28325da" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/9811150230.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9811150176/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150176&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=fd75ca3d593b9aa54d8d16b96d993aa9" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/9811150176.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/9811150214/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9811150214&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=169938411d7493e3fd8e69b46540ae6c" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/9811150214.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+        <a class="books__item" href="https://www.amazon.com/gp/product/981115015X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=981115015X&amp;linkCode=as2&amp;tag=calienteleder-20&amp;linkId=0849f3a53a1a3e22ea88b398501dab39" target="_blank" rel="noopener noreferrer sponsored" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/books/981115015X.jpg" alt="" width="333" height="500" decoding="async">
+        </a>
+      </div>
     </div>
   </div>
 </section>

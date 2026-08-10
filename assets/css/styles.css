@@ -1137,6 +1137,10 @@ body.intro-lock{ overflow:hidden; }
 
 .books .section__lede{ margin-bottom:44px; }
 
+/* Second carousel follows the About section, which is already tinted, so this
+   one goes white to keep the bands alternating. */
+.books--coached{ background:var(--bg); }
+
 .books__viewport{
   position:relative;
   width:100%;

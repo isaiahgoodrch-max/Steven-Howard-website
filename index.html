@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=38">
+<link rel="stylesheet" href="assets/css/styles.css?v=39">
 
 <!-- Decide about the intro before first paint, so the page never flashes
      behind it. No JS (or reduced motion, or already seen) = no overlay. -->
@@ -74,7 +74,7 @@
       <a href="#about">About Steven</a>
     </nav>
 
-    <button class="btn btn--solid btn--sm js-open-modal" data-source="nav">Apply to Work Together</button>
+    <button class="btn btn--solid btn--sm js-open-modal" data-source="nav">Let's Work Together</button>
 
     <button class="nav__toggle" aria-label="Menu" aria-expanded="false" id="navToggle">
       <span></span><span></span>
@@ -103,7 +103,7 @@
       </p>
 
       <div class="hero__actions">
-        <button class="btn btn--solid js-open-modal" data-source="hero">Apply to Work Together</button>
+        <button class="btn btn--solid js-open-modal" data-source="hero">Let's Work Together</button>
         <a class="btn btn--ghost" href="#coaching">See how coaching works</a>
       </div>
 
@@ -437,7 +437,14 @@
           often we meet. We'll cover that in our first conversation.
         </p>
       </div>
-      <button class="btn btn--solid js-open-modal" data-source="availability">Start the conversation</button>
+      <!-- Goes straight to the calendar. The form-first path is the
+           "Let's Work Together" buttons; this one is just "book a call". -->
+      <a
+        class="btn btn--solid js-book-call"
+        href="https://calendly.com/stevenhoward/from-writer-to-author"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Let's Talk</a>
     </div>
   </div>
 </section>
@@ -631,7 +638,7 @@
       I work with a small number of authors at a time, so I read every note personally.
       Tell me about your book and what you want to do with it, and I'll come back to you.
     </p>
-    <button class="btn btn--solid btn--lg js-open-modal" data-source="cta">Apply to Work Together</button>
+    <button class="btn btn--solid btn--lg js-open-modal" data-source="cta">Let's Work Together</button>
     <p class="cta__alt">
       Prefer email? <a href="#" class="js-open-modal" data-source="email-link">stevenhoward@verizon.net</a>
     </p>
@@ -660,7 +667,7 @@
     </nav>
 
     <div class="footer__meta">
-      <p>Palm Springs, California</p>
+      <p>Phoenix, Arizona</p>
       <p>&copy; <span id="year">2026</span> Steven Howard. All rights reserved.</p>
     </div>
   </div>
@@ -727,7 +734,7 @@
           </div>
         </div>
 
-        <h2 id="modalTitle">Why do you want to work with me?</h2>
+        <h2 id="modalTitle">Why do you want me to work with you?</h2>
         <p class="modal__lede">
           I take on a small number of authors at a time, so tell me a little about
           yourself and the book. Then you'll pick a time for our call.
@@ -814,6 +821,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=38"></script>
+<script src="assets/js/main.js?v=39"></script>
 </body>
 </html>

@@ -206,6 +206,22 @@
     btn.addEventListener('click', openModal);
   });
 
+  /* "Let's Talk" skips the form and goes straight to the calendar. The href is
+     the real booking URL, so this still works with JS off or blocked; the
+     handler just upgrades it to an in-page popup. */
+  $$('.js-book-call').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      loadCalendly().then(function (ready) {
+        if (ready && window.Calendly && window.Calendly.initPopupWidget) {
+          window.Calendly.initPopupWidget({ url: CONFIG.CALENDLY_URL });
+        } else {
+          window.open(link.href, '_blank', 'noopener');
+        }
+      });
+    });
+  });
+
   $$('[data-close]', modal).forEach(function (el) {
     el.addEventListener('click', closeModal);
   });

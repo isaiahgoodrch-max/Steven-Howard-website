@@ -165,26 +165,26 @@ With lazy on, roughly half the shelf slides past as empty white boxes.
 Steven has written **26** books; the shelf shows the 19 we have links for, so the copy
 says "here are some of them" rather than implying it is the complete set.
 
-## What we work on (one section, click to expand)
+## The Coaching section (one section, two cards)
 
-This replaced two sections that duplicated each other: a "Coaching" block with two
-cards (Develop your writing / Publish your book) and a separate "Scope" block of boxes.
-The card bullets and the boxes were near-identical.
+There used to be two sections saying the same thing: this one, and a separate "What we
+work on" block of boxes. Its "content structuring" box duplicated this list's
+"structuring your messages", and the same went for developmental editing, copy editing
+and prepublication.
 
-A "journey" version was tried first (five numbered stages, idea to published) and
-rejected: the invented stage names read as filler. The boxes use the actual trade terms
-instead, which is what Steven himself uses.
+Merged into the two cards, which is where the split naturally falls:
 
-Eight boxes, in the order the work happens:
+- **01 Develop your writing** — finding your idea, content structuring, a writing habit,
+  developmental editing, copy editing
+- **02 Publish your book** — choosing your path, prepublication, cover design, print and
+  eBook ready
 
-Finding your idea · Content structuring · The writing itself · Developmental editing ·
-Copy editing · Choosing your publishing path · Prepublication · Cover design
+Each bullet leads with the term in bold, then explains it in plain language, so the card
+carries the detail the boxes used to hide behind a click.
 
-No marketing boxes; Steven does not offer that.
-
-Progressive enhancement is unchanged: each description sits in the markup inside its
-tile, `html.js` hides them, and the panel below takes over. With JS off the boxes render
-with their text visible.
+Two other formats were tried and rejected: a five-stage "journey" (invented stage names
+read as filler) and a single grid of eight click-to-expand boxes (wrong half of the
+merge). The headings here are Steven's own wording.
 
 ## The inquiry form (two steps, then Calendly)
 

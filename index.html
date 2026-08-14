@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=43">
+<link rel="stylesheet" href="assets/css/styles.css?v=44">
 
 <!-- Decide about the intro before first paint, so the page never flashes
      behind it. No JS (or reduced motion, or already seen) = no overlay. -->
@@ -68,7 +68,7 @@
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="#work">What We Work On</a>
+      <a href="#coaching">The Coaching</a>
             <a href="#how">How It Works</a>
       <a href="#about">About Steven</a>
     </nav>
@@ -103,7 +103,7 @@
 
       <div class="hero__actions">
         <button class="btn btn--solid js-open-modal" data-source="hero">Let's Work Together</button>
-        <a class="btn btn--ghost" href="#work">See what we work on</a>
+        <a class="btn btn--ghost" href="#coaching">See how coaching works</a>
       </div>
 
       <p class="hero__note">
@@ -251,64 +251,56 @@
   </div>
 </section>
 
-<!-- ================= WHAT WE WORK ON ================= -->
+<!-- ================= THE COACHING ================= -->
 <!--
-  One section covering both writing and publishing. It replaced a separate
-  "Coaching" block whose bullets duplicated these same items.
-  Descriptions live in the markup so they still read without JS; the .js
-  class hides them and the panel below takes over.
+  One section. The separate "What we work on" boxes were duplicating these
+  bullets (its "content structuring" vs this list's "structuring your
+  messages"), so those items are folded into the two cards where they
+  belong: craft on the left, publishing on the right.
 -->
-<section class="section" id="work">
+<section class="section" id="coaching">
   <div class="wrap">
-    <p class="eyebrow">Scope</p>
-    <h2 class="section__title">What we work on</h2>
+    <p class="eyebrow">The Coaching</p>
+    <h2 class="section__title">Two things I help you accomplish</h2>
     <p class="section__lede">
-      Everything from the first idea through to a finished book on the shelf.
-      Every engagement is built around your project, so we start wherever yours
-      actually is. Click any of these to see what it means.
+      Most people who come to me need one of these, and usually, eventually, both.
+      We start wherever you actually are.
     </p>
 
-    <div class="grid-4" id="workGrid">
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Finding your idea</span>
-        <span class="tile__desc">Most first-time authors are trying to write five books at once. We work out which one this actually is, who it's for, and what it needs to do for them.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Content structuring</span>
-        <span class="tile__desc">Key themes, supporting messages, and the detail that backs them up, turned into an outline. Get the shape right and the writing gets far easier.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">The writing itself</span>
-        <span class="tile__desc">Making your point land, cutting what isn't earning its place, and finding the voice that sounds like you. Plus a writing habit you'll actually keep.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Developmental editing</span>
-        <span class="tile__desc">The big-picture read. Does the argument hold? Is it in the right order? This starts early, while changes are still cheap to make.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Copy editing</span>
-        <span class="tile__desc">Grammar, spelling, word choice, consistency. The pass that happens once your draft is standing on its own.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Choosing your publishing path</span>
-        <span class="tile__desc">Traditional, hybrid, or self-publishing, weighed honestly against what you actually want out of the book.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Prepublication</span>
-        <span class="tile__desc">Typefaces, page layout, trim size, ISBNs, and the eBook and print-on-demand formats. Decisions that are hard to undo later.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Cover design</span>
-        <span class="tile__desc">The decisions that sink a good book if you get them wrong. I'll walk you through them and bring in a designer where it's worth it.</span>
-      </button>
-    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="card__num">01</span>
+        <h3>Develop your writing</h3>
+        <p>
+          The blank page, the messy draft, the chapter that won't hold together.
+          We work on structure first, because most first-time authors are trying to
+          cram five books into one. Then on the writing itself: making your point land,
+          cutting what isn't earning its place, and finding the voice that sounds like you.
+        </p>
+        <ul class="card__list">
+          <li><strong>Finding your idea.</strong> Working out which book this actually is, and who it's for.</li>
+          <li><strong>Content structuring.</strong> Key themes, supporting messages and detail, turned into a working outline.</li>
+          <li><strong>A writing habit.</strong> A routine you'll actually keep once the novelty wears off.</li>
+          <li><strong>Developmental editing.</strong> Does the argument hold? Is it in the right order? Starts early, while changes are cheap.</li>
+          <li><strong>Copy editing.</strong> Clarity, grammar, word choice and consistency, once the draft stands on its own.</li>
+        </ul>
+      </article>
 
-    <div class="work-detail" id="workDetail" role="region" aria-live="polite" hidden>
-      <button class="work-detail__close" type="button" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-      <h3 class="work-detail__title"></h3>
-      <p class="work-detail__body"></p>
+      <article class="card">
+        <span class="card__num">02</span>
+        <h3>Publish your book</h3>
+        <p>
+          Publishing is a long series of decisions, and almost none of them are obvious
+          the first time through. I've made all of them, 26 times over. I'll walk you
+          through each one so your book comes out looking like it belongs on the shelf.
+        </p>
+        <ul class="card__list">
+          <li><strong>Choosing your path.</strong> Traditional, hybrid or self-publishing, weighed against what you want from the book.</li>
+          <li><strong>Prepublication.</strong> Typefaces, page layout, trim size, ISBNs, eBook and print-on-demand formats.</li>
+          <li><strong>Cover design.</strong> The decisions that sink a good book, and a designer where it's worth it.</li>
+          <li><strong>Print and eBook ready.</strong> Turning a finished manuscript into files that are actually ready to publish.</li>
+        </ul>
+      </article>
     </div>
   </div>
 </section>
@@ -636,7 +628,7 @@
     </div>
 
     <nav class="footer__links" aria-label="Footer">
-      <a href="#work">What We Work On</a>
+      <a href="#coaching">The Coaching</a>
             <a href="#how">How It Works</a>
       <a href="#about">About</a>
       <a href="#" class="js-open-modal" data-source="footer">Contact</a>
@@ -797,6 +789,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=43"></script>
+<script src="assets/js/main.js?v=44"></script>
 </body>
 </html>

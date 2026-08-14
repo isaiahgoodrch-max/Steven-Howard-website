@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=39">
+<link rel="stylesheet" href="assets/css/styles.css?v=40">
 
 <!-- Decide about the intro before first paint, so the page never flashes
      behind it. No JS (or reduced motion, or already seen) = no overlay. -->
@@ -638,7 +638,14 @@
       I work with a small number of authors at a time, so I read every note personally.
       Tell me about your book and what you want to do with it, and I'll come back to you.
     </p>
-    <button class="btn btn--solid btn--lg js-open-modal" data-source="cta">Let's Work Together</button>
+    <!-- Goes straight to the calendar, since the email route is offered
+         directly beneath it. -->
+    <a
+      class="btn btn--solid btn--lg js-book-call"
+      href="https://calendly.com/stevenhoward/from-writer-to-author"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Let's Work Together</a>
     <p class="cta__alt">
       Prefer email? <a href="#" class="js-open-modal" data-source="email-link">stevenhoward@verizon.net</a>
     </p>
@@ -821,6 +828,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=39"></script>
+<script src="assets/js/main.js?v=40"></script>
 </body>
 </html>

@@ -488,7 +488,7 @@ a{ color:inherit; }
   object-fit:cover;
   object-position:50% 30%;
 }
-.about__badges{ margin-top:18px; }
+.about__badges{ margin-top:18px; display:grid; gap:14px; }
 .about__badges img{
   width:100%;
   border-radius:12px;

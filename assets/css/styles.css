@@ -543,23 +543,34 @@ a{ color:inherit; }
   padding:26px 0 0;
   border-top:1px solid var(--line);
 }
+/* Was a flex row, which squashed the award name against the title and put
+   odd gaps around "for". Now a label line above readable body text. */
 .awards li{
-  display:flex; flex-wrap:wrap; gap:4px 12px;
-  align-items:baseline;
-  padding:12px 0;
+  padding:13px 0;
   border-bottom:1px solid var(--line);
   font-size:15px;
-  color:var(--muted-2);
+  line-height:1.6;
+  color:var(--muted);
 }
 .awards li:last-child{ border-bottom:0; }
 .awards span{
+  display:block;
+  margin-bottom:3px;
   color:var(--accent-hi);
-  font-weight:500;
-  font-size:13px;
-  letter-spacing:.05em;
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.08em;
   text-transform:uppercase;
-  flex:0 0 auto;
 }
+/* book titles were muted and hard to read; give them full contrast */
+.awards em{ color:var(--text); font-style:italic; }
+
+/* the opening line of the Format section runs the full width */
+.section__lede--wide{ max-width:none; }
+
+/* hero note without the dot marker */
+.hero__note--plain{ display:block; max-width:52ch; font-size:16.5px; color:var(--muted); }
+.hero__note--plain::before{ content:none; }
 
 /* =========================================================
    TESTIMONIALS

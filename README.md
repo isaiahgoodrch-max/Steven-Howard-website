@@ -165,23 +165,26 @@ With lazy on, roughly half the shelf slides past as empty white boxes.
 Steven has written **26** books; the shelf shows the 19 we have links for, so the copy
 says "here are some of them" rather than implying it is the complete set.
 
-## The Process section
+## What we work on (one section, click to expand)
 
-Replaced two sections that were saying the same thing twice: a "Coaching" block with
-two cards (Develop your writing / Publish your book) and a "Scope" block of clickable
-boxes (Content structuring, Developmental editing, Copy editing, Prepublication). The
-card bullets and the boxes were near-duplicates of each other.
+This replaced two sections that duplicated each other: a "Coaching" block with two
+cards (Develop your writing / Publish your book) and a separate "Scope" block of boxes.
+The card bullets and the boxes were near-identical.
 
-Now one section following the order a book is actually made, so each stage carries both
-the outcome and the craft work behind it:
+A "journey" version was tried first (five numbered stages, idea to published) and
+rejected: the invented stage names read as filler. The boxes use the actual trade terms
+instead, which is what Steven himself uses.
 
-1. Find the idea · 2. Structure it · 3. Write the draft · 4. Edit it · 5. Publish it
+Eight boxes, in the order the work happens:
 
-Nothing from either old section was dropped; every bullet and every box landed in a
-stage. The pills under each stage are the old scope box names.
+Finding your idea · Content structuring · The writing itself · Developmental editing ·
+Copy editing · Choosing your publishing path · Prepublication · Cover design
 
-The old `.cards`, `.tile`, `.grid-4` and `.work-detail` CSS and the tile click-to-expand
-JS were deleted with it.
+No marketing boxes; Steven does not offer that.
+
+Progressive enhancement is unchanged: each description sits in the markup inside its
+tile, `html.js` hides them, and the panel below takes over. With JS off the boxes render
+with their text visible.
 
 ## The inquiry form (two steps, then Calendly)
 

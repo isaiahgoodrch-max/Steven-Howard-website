@@ -351,89 +351,106 @@ a{ color:inherit; }
 
 
 
-/* ---------- The journey (idea -> published) ---------- */
-.journey{
-  list-style:none;
-  margin:0;
-  padding:0;
+.grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+
+/* Compact, clickable. The definition opens in .work-detail below the grid
+   rather than a floating popover, which gets cramped on narrow screens. */
+.tile{
   position:relative;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  text-align:left;
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:17px 16px 17px 20px;
+  cursor:pointer;
+  font-family:var(--sans);
+  box-shadow:var(--shadow);
+  transition:border-color .25s var(--ease), background .25s var(--ease),
+             transform .25s var(--ease);
+}
+.tile:hover{ border-color:var(--accent-line); transform:translateY(-2px); }
+
+.tile__name{
+  font-family:var(--serif);
+  font-size:16.5px;
+  font-weight:600;
+  line-height:1.25;
+  letter-spacing:-.005em;
+  color:var(--text);
+  flex:1;
 }
 
-/* the spine running through the numbers */
-.journey::before{
+/* Without JS the descriptions simply stay on the tiles. */
+.js .tile__desc{ display:none; }
+.tile__desc{
+  display:block;
+  font-size:14.5px;
+  color:var(--muted-2);
+  line-height:1.6;
+  margin-top:8px;
+}
+
+/* plus that becomes a minus when open */
+.tile::after,
+.tile::before{
   content:"";
   position:absolute;
-  left:23px;
-  top:14px;
-  bottom:14px;
-  width:2px;
-  background:linear-gradient(to bottom, var(--accent-line), var(--line));
+  right:18px;
+  background:var(--accent);
+  transition:transform .28s var(--ease), opacity .28s var(--ease);
 }
+.tile::before{ width:11px; height:1.5px; top:50%; margin-top:-.75px; }
+.tile::after{ width:1.5px; height:11px; top:50%; margin-top:-5.5px; right:22.75px; }
+.tile.is-active::after{ transform:rotate(90deg); opacity:0; }
 
-.journey__step{
-  position:relative;
-  display:flex;
-  gap:22px;
-  padding-bottom:34px;
-}
-.journey__step:last-child{ padding-bottom:0; }
-
-.journey__num{
-  position:relative;
-  z-index:1;                 /* sit on top of the spine */
-  flex:0 0 48px;
-  height:48px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:var(--bg);
-  border:2px solid var(--accent-line);
-  font-family:var(--serif);
-  font-size:19px;
-  font-weight:600;
-  color:var(--accent-hi);
-}
-
-.journey__body{ padding-top:6px; min-width:0; }
-
-.journey__body h3{
-  font-size:22px;
-  margin-bottom:8px;
-  letter-spacing:-.01em;
-}
-.journey__body p{
-  color:var(--muted);
-  font-size:16.5px;
-  margin-bottom:14px;
-  max-width:62ch;
-}
-
-.journey__tags{
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.journey__tags li{
-  font-size:13px;
-  font-weight:500;
-  color:var(--accent-hi);
+.tile.is-active{
+  border-color:var(--accent);
   background:var(--accent-dim);
-  border-radius:999px;
-  padding:5px 13px;
-  white-space:nowrap;
 }
+.tile.is-active .tile__name{ color:var(--accent-hi); }
 
-@media (max-width:620px){
-  .journey::before{ left:17px; }
-  .journey__step{ gap:16px; padding-bottom:28px; }
-  .journey__num{ flex-basis:36px; height:36px; font-size:16px; }
-  .journey__body{ padding-top:2px; }
-  .journey__body h3{ font-size:20px; }
-  .journey__tags li{ font-size:12.5px; padding:4px 11px; }
+.work-detail{
+  position:relative;
+  margin-top:18px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-left:3px solid var(--accent);
+  border-radius:12px;
+  padding:26px 56px 26px 28px;
+  box-shadow:var(--shadow);
+  animation:workIn .3s var(--ease);
 }
+.work-detail[hidden]{ display:none; }
+@keyframes workIn{ from{ opacity:0; transform:translateY(-6px); } }
+
+.work-detail__title{
+  font-size:20px;
+  margin-bottom:8px;
+  color:var(--text);
+}
+.work-detail__body{
+  margin:0;
+  font-size:16px;
+  color:var(--muted);
+  max-width:70ch;
+}
+.work-detail__close{
+  position:absolute; top:16px; right:16px;
+  width:32px; height:32px;
+  display:grid; place-items:center;
+  background:none;
+  border:1px solid var(--line);
+  border-radius:50%;
+  color:var(--muted-2);
+  cursor:pointer;
+  transition:color .2s var(--ease), border-color .2s var(--ease);
+}
+.work-detail__close:hover{ color:var(--accent); border-color:var(--accent-line); }
+.work-detail__close svg{ width:15px; height:15px; }
 
 /* ---------- Format (How it works) ---------- */
 .format{
@@ -974,6 +991,7 @@ body.modal-open{ overflow:hidden; }
    RESPONSIVE
    ========================================================= */
 @media (max-width:1080px){
+  .grid-4{ grid-template-columns:repeat(2,1fr); }
   .steps{ grid-template-columns:repeat(2,1fr); }
   .step:nth-child(2){ border-right:0; }
   .step:nth-child(-n+2){ border-bottom:1px solid var(--line); }
@@ -1024,6 +1042,8 @@ body.modal-open{ overflow:hidden; }
 
 @media (max-width:620px){
   body{ font-size:16px; }
+  .grid-4{ grid-template-columns:1fr; }
+  .work-detail{ padding:24px 24px 24px 22px; }
   .wrap{ padding:0 20px; }
   .intro__stage{ padding:0 14px; }
 

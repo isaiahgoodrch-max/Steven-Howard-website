@@ -168,23 +168,26 @@ says "here are some of them" rather than implying it is the complete set.
 ## The Coaching section (one section, two cards)
 
 There used to be two sections saying the same thing: this one, and a separate "What we
-work on" block of boxes. Its "content structuring" box duplicated this list's
-"structuring your messages", and the same went for developmental editing, copy editing
-and prepublication.
+work on" block of boxes whose items duplicated these bullets. Merged into the two cards.
 
-Merged into the two cards, which is where the split naturally falls:
+**The wording is Steven's own**, lifted from the Caliente Press copy and turned into
+first person, because here he is the coach rather than the press:
 
-- **01 Develop your writing** — finding your idea, content structuring, a writing habit,
-  developmental editing, copy editing
-- **02 Publish your book** — choosing your path, prepublication, cover design, print and
-  eBook ready
+- "Writers, especially first-time authors, tend to have too many messages they want to
+  cram into a book"
+- "a coherent and practical outline that smooths and expedites your writing"
+- "developmental editing starts early in your writing process while copy editing begins
+  when your first draft is ready"
+- "walk you through these, recommending best options along the way"
 
-Each bullet leads with the term in bold, then explains it in plain language, so the card
-carries the detail the boxes used to hide behind a click.
+**Deliberately absent: cover design, marketing, launch, promotion, distribution.** He
+coaches the author; he does not produce or sell the book. Cover design was in an earlier
+draft and was removed for exactly this reason. The only "marketing" words left on the
+page are his book titles, his book topics and his corporate CV, all of which are facts
+about him rather than services.
 
 Two other formats were tried and rejected: a five-stage "journey" (invented stage names
-read as filler) and a single grid of eight click-to-expand boxes (wrong half of the
-merge). The headings here are Steven's own wording.
+read as filler) and a grid of eight click-to-expand boxes (merged the wrong way round).
 
 ## The inquiry form (two steps, then Calendly)
 

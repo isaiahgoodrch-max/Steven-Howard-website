@@ -338,149 +338,102 @@ a{ color:inherit; }
   margin:0 0 56px;
 }
 
-/* ---------- Coaching cards ---------- */
-.cards{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
 
-.card{
-  position:relative;
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  padding:44px 40px 40px;
-  transition:border-color .3s var(--ease), transform .3s var(--ease);
-  box-shadow:var(--shadow);
-}
-.card:hover{ border-color:var(--accent-line); transform:translateY(-4px); }
 
-.card__num{
-  font-family:var(--serif);
-  font-size:13px;
-  font-weight:600;
-  letter-spacing:.16em;
-  color:var(--accent-hi);
-  display:block;
-  margin-bottom:16px;
-}
-.card h3{ font-size:29px; margin-bottom:16px; }
-.card > p{ color:var(--muted); font-size:16.5px; margin-bottom:26px; }
 
-.card__list{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
-.card__list li{
-  position:relative;
-  padding:13px 0 13px 26px;
-  font-size:15.5px;
-  color:var(--muted);
-  border-bottom:1px solid var(--line);
-}
-.card__list li:last-child{ border-bottom:0; }
-.card__list li::before{
-  content:"";
-  position:absolute; left:4px; top:19.5px;
-  width:5px; height:5px; border-radius:50%;
-  background:var(--accent);
-}
 
-/* ---------- Tiles ---------- */
-.grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 
-/* Compact, clickable. The definition opens in .work-detail below the grid
-   rather than a floating popover, which gets cramped on narrow screens. */
-.tile{
-  position:relative;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  width:100%;
-  text-align:left;
-  background:var(--bg);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:17px 16px 17px 20px;
-  cursor:pointer;
-  font-family:var(--sans);
-  box-shadow:var(--shadow);
-  transition:border-color .25s var(--ease), background .25s var(--ease),
-             transform .25s var(--ease);
-}
-.tile:hover{ border-color:var(--accent-line); transform:translateY(-2px); }
 
-.tile__name{
-  font-family:var(--serif);
-  font-size:16.5px;
-  font-weight:600;
-  line-height:1.25;
-  letter-spacing:-.005em;
-  color:var(--text);
-  flex:1;
-}
 
 /* Without JS the descriptions simply stay on the tiles. */
-.js .tile__desc{ display:none; }
-.tile__desc{
-  display:block;
-  font-size:14.5px;
-  color:var(--muted-2);
-  line-height:1.6;
-  margin-top:8px;
+
+
+
+
+
+/* ---------- The journey (idea -> published) ---------- */
+.journey{
+  list-style:none;
+  margin:0;
+  padding:0;
+  position:relative;
 }
 
-/* plus that becomes a minus when open */
-.tile::after,
-.tile::before{
+/* the spine running through the numbers */
+.journey::before{
   content:"";
   position:absolute;
-  right:18px;
-  background:var(--accent);
-  transition:transform .28s var(--ease), opacity .28s var(--ease);
+  left:23px;
+  top:14px;
+  bottom:14px;
+  width:2px;
+  background:linear-gradient(to bottom, var(--accent-line), var(--line));
 }
-.tile::before{ width:11px; height:1.5px; top:50%; margin-top:-.75px; }
-.tile::after{ width:1.5px; height:11px; top:50%; margin-top:-5.5px; right:22.75px; }
-.tile.is-active::after{ transform:rotate(90deg); opacity:0; }
 
-.tile.is-active{
-  border-color:var(--accent);
-  background:var(--accent-dim);
-}
-.tile.is-active .tile__name{ color:var(--accent-hi); }
-
-.work-detail{
+.journey__step{
   position:relative;
-  margin-top:18px;
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-left:3px solid var(--accent);
-  border-radius:12px;
-  padding:26px 56px 26px 28px;
-  box-shadow:var(--shadow);
-  animation:workIn .3s var(--ease);
+  display:flex;
+  gap:22px;
+  padding-bottom:34px;
 }
-.work-detail[hidden]{ display:none; }
-@keyframes workIn{ from{ opacity:0; transform:translateY(-6px); } }
+.journey__step:last-child{ padding-bottom:0; }
 
-.work-detail__title{
-  font-size:20px;
-  margin-bottom:8px;
-  color:var(--text);
-}
-.work-detail__body{
-  margin:0;
-  font-size:16px;
-  color:var(--muted);
-  max-width:70ch;
-}
-.work-detail__close{
-  position:absolute; top:16px; right:16px;
-  width:32px; height:32px;
-  display:grid; place-items:center;
-  background:none;
-  border:1px solid var(--line);
+.journey__num{
+  position:relative;
+  z-index:1;                 /* sit on top of the spine */
+  flex:0 0 48px;
+  height:48px;
+  display:grid;
+  place-items:center;
   border-radius:50%;
-  color:var(--muted-2);
-  cursor:pointer;
-  transition:color .2s var(--ease), border-color .2s var(--ease);
+  background:var(--bg);
+  border:2px solid var(--accent-line);
+  font-family:var(--serif);
+  font-size:19px;
+  font-weight:600;
+  color:var(--accent-hi);
 }
-.work-detail__close:hover{ color:var(--accent); border-color:var(--accent-line); }
-.work-detail__close svg{ width:15px; height:15px; }
+
+.journey__body{ padding-top:6px; min-width:0; }
+
+.journey__body h3{
+  font-size:22px;
+  margin-bottom:8px;
+  letter-spacing:-.01em;
+}
+.journey__body p{
+  color:var(--muted);
+  font-size:16.5px;
+  margin-bottom:14px;
+  max-width:62ch;
+}
+
+.journey__tags{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.journey__tags li{
+  font-size:13px;
+  font-weight:500;
+  color:var(--accent-hi);
+  background:var(--accent-dim);
+  border-radius:999px;
+  padding:5px 13px;
+  white-space:nowrap;
+}
+
+@media (max-width:620px){
+  .journey::before{ left:17px; }
+  .journey__step{ gap:16px; padding-bottom:28px; }
+  .journey__num{ flex-basis:36px; height:36px; font-size:16px; }
+  .journey__body{ padding-top:2px; }
+  .journey__body h3{ font-size:20px; }
+  .journey__tags li{ font-size:12.5px; padding:4px 11px; }
+}
 
 /* ---------- Format (How it works) ---------- */
 .format{
@@ -1021,7 +974,6 @@ body.modal-open{ overflow:hidden; }
    RESPONSIVE
    ========================================================= */
 @media (max-width:1080px){
-  .grid-4{ grid-template-columns:repeat(2,1fr); }
   .steps{ grid-template-columns:repeat(2,1fr); }
   .step:nth-child(2){ border-right:0; }
   .step:nth-child(-n+2){ border-bottom:1px solid var(--line); }
@@ -1058,7 +1010,6 @@ body.modal-open{ overflow:hidden; }
   .hero__title{ font-size:clamp(40px,10vw,60px); }
 
   .section{ padding:80px 0; }
-  .cards{ grid-template-columns:1fr; }
   .format{ grid-template-columns:1fr; }
   .quotes{ grid-template-columns:1fr; }
 
@@ -1076,8 +1027,6 @@ body.modal-open{ overflow:hidden; }
   .wrap{ padding:0 20px; }
   .intro__stage{ padding:0 14px; }
 
-  .grid-4{ grid-template-columns:1fr; }
-  .work-detail{ padding:24px 24px 24px 22px; }
   .steps{ grid-template-columns:1fr; }
   .step{ border-right:0; border-bottom:1px solid var(--line); }
   .step:last-child{ border-bottom:0; }

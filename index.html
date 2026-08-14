@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=40">
+<link rel="stylesheet" href="assets/css/styles.css?v=42">
 
 <!-- Decide about the intro before first paint, so the page never flashes
      behind it. No JS (or reduced motion, or already seen) = no overlay. -->
@@ -68,9 +68,8 @@
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="#coaching">Coaching</a>
-      <a href="#work">What We Work On</a>
-      <a href="#how">How It Works</a>
+      <a href="#process">The Process</a>
+            <a href="#how">How It Works</a>
       <a href="#about">About Steven</a>
     </nav>
 
@@ -104,7 +103,7 @@
 
       <div class="hero__actions">
         <button class="btn btn--solid js-open-modal" data-source="hero">Let's Work Together</button>
-        <a class="btn btn--ghost" href="#coaching">See how coaching works</a>
+        <a class="btn btn--ghost" href="#process">See how it works</a>
       </div>
 
       <p class="hero__note">
@@ -252,94 +251,83 @@
   </div>
 </section>
 
-<!-- ================= COACHING ================= -->
-<section class="section" id="coaching">
+<!-- ============ THE PROCESS (replaces Coaching + Scope) ============ -->
+<!--
+  These were two sections saying the same thing twice: the coaching cards
+  listed "structuring your messages into an outline" while the scope boxes
+  listed "content structuring", and so on for developmental editing, copy
+  editing and prepublication. Merged into the order a book is actually made,
+  so each stage carries both the outcome and the work behind it.
+-->
+<section class="section" id="process">
   <div class="wrap">
-    <p class="eyebrow">The Coaching</p>
-    <h2 class="section__title">Two things I help you accomplish</h2>
+    <p class="eyebrow">The Process</p>
+    <h2 class="section__title">From an idea to a published book</h2>
     <p class="section__lede">
-      Most people who come to me need one of these, and usually, eventually, both.
-      We start wherever you actually are.
+      Every book moves through the same five stages. Wherever yours is right now
+      is where we start.
     </p>
 
-    <div class="cards">
-      <article class="card">
-        <span class="card__num">01</span>
-        <h3>Develop your writing</h3>
-        <p>
-          The blank page, the messy draft, the chapter that won't hold together.
-          We work on structure first, because most first-time authors are trying to
-          cram five books into one. Then on the writing itself: making your point land,
-          cutting what isn't earning its place, and finding the voice that sounds like you.
-        </p>
-        <ul class="card__list">
-          <li>Finding and narrowing your core idea</li>
-          <li>Structuring your messages into a working outline</li>
-          <li>Developing a writing habit you'll actually keep</li>
-          <li>Developmental feedback as your draft takes shape</li>
-          <li>Line-level editing: clarity, grammar, word choice</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <span class="card__num">02</span>
-        <h3>Publish your book</h3>
-        <p>
-          Publishing is a long series of decisions, and almost none of them are obvious
-          the first time through. I've made all of them, 26 times over. I'll walk you
-          through each one so your book comes out looking like it belongs on the shelf.
-        </p>
-        <ul class="card__list">
-          <li>Choosing your publishing path honestly</li>
-          <li>Prepublication: formats, layout, trim size, ISBNs</li>
-          <li>Cover design decisions that don't sink you</li>
-          <li>Getting the manuscript print and eBook ready</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= WHAT WE WORK ON ================= -->
-<section class="section section--alt" id="work">
-  <div class="wrap">
-    <p class="eyebrow">Scope</p>
-    <h2 class="section__title">What we work on</h2>
-    <p class="section__lede">
-      Every engagement is built around your project. These are the things
-      that come up most.
-    </p>
-
-    <!-- Compact buttons; the description lives in the markup so it is still
-         readable without JS. The .js class (set in <head>) hides it and the
-         panel below takes over. -->
-    <div class="grid-4" id="workGrid">
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Content structuring</span>
-        <span class="tile__desc">Key themes, supporting messages, and substantiating detail, turned into an outline that makes the writing faster.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Developmental editing</span>
-        <span class="tile__desc">The big-picture work. Does the argument hold? Is it in the right order? Starts early, while it's still cheap to change.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Copy editing</span>
-        <span class="tile__desc">Grammar, spelling, word choice, consistency. The pass that happens once your draft is standing on its own.</span>
-      </button>
-      <button class="tile" type="button" aria-expanded="false" aria-controls="workDetail">
-        <span class="tile__name">Prepublication</span>
-        <span class="tile__desc">Typefaces, page layout, trim size, ISBNs, eBook and print-on-demand formats, cover design direction.</span>
-      </button>
-    </div>
-
-    <div class="work-detail" id="workDetail" role="region" aria-live="polite" hidden>
-      <button class="work-detail__close" type="button" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-      <h3 class="work-detail__title"></h3>
-      <p class="work-detail__body"></p>
-    </div>
-    </div>
+    <ol class="journey">
+      <li class="journey__step">
+        <span class="journey__num" aria-hidden="true">1</span>
+        <div class="journey__body">
+          <h3>Find the idea</h3>
+          <p>Most first-time authors are writing five books at once. We start by working out which one this actually is, who it's for, and what it has to do for them.</p>
+          <ul class="journey__tags">
+            <li>Narrowing your core idea</li>
+            <li>Finding your reader</li>
+          </ul>
+        </div>
+      </li>
+      <li class="journey__step">
+        <span class="journey__num" aria-hidden="true">2</span>
+        <div class="journey__body">
+          <h3>Structure it</h3>
+          <p>Key themes, supporting messages, substantiating detail, turned into an outline. Get the shape right and the writing gets dramatically easier.</p>
+          <ul class="journey__tags">
+            <li>Content structuring</li>
+            <li>Chapter outline</li>
+          </ul>
+        </div>
+      </li>
+      <li class="journey__step">
+        <span class="journey__num" aria-hidden="true">3</span>
+        <div class="journey__body">
+          <h3>Write the draft</h3>
+          <p>A writing habit you'll actually keep, and honest feedback while the draft is still cheap to change. Does the argument hold? Is it in the right order?</p>
+          <ul class="journey__tags">
+            <li>Developmental editing</li>
+            <li>Chapter feedback</li>
+          </ul>
+        </div>
+      </li>
+      <li class="journey__step">
+        <span class="journey__num" aria-hidden="true">4</span>
+        <div class="journey__body">
+          <h3>Edit it</h3>
+          <p>The pass that happens once your draft is standing on its own. Clarity, grammar, word choice, consistency, and cutting whatever isn't earning its place.</p>
+          <ul class="journey__tags">
+            <li>Copy editing</li>
+            <li>Line-level editing</li>
+          </ul>
+        </div>
+      </li>
+      <li class="journey__step">
+        <span class="journey__num" aria-hidden="true">5</span>
+        <div class="journey__body">
+          <h3>Publish it</h3>
+          <p>A long series of decisions, almost none of them obvious the first time through. I've made all of them, 26 times over, so your book comes out looking like it belongs on the shelf.</p>
+          <ul class="journey__tags">
+            <li>Choosing your path</li>
+            <li>Formats and layout</li>
+            <li>Trim size and ISBNs</li>
+            <li>Cover design</li>
+            <li>Print and eBook ready</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -666,9 +654,8 @@
     </div>
 
     <nav class="footer__links" aria-label="Footer">
-      <a href="#coaching">Coaching</a>
-      <a href="#work">What We Work On</a>
-      <a href="#how">How It Works</a>
+      <a href="#process">The Process</a>
+            <a href="#how">How It Works</a>
       <a href="#about">About</a>
       <a href="#" class="js-open-modal" data-source="footer">Contact</a>
     </nav>
@@ -828,6 +815,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=40"></script>
+<script src="assets/js/main.js?v=42"></script>
 </body>
 </html>

@@ -56,8 +56,7 @@ These were pulled from Steven's existing sites and should be checked with him:
 |---|---|
 | Hero | Portrait + positioning as a personal coach, not a publishing house |
 | Books carousel | Scrolling shelf of covers, linking to Amazon |
-| Coaching | The two tracks — learn to write it / get it published |
-| What we work on | Eight concrete service areas |
+| The Process | Five stages from idea to published book |
 | How it works | Zoom, 50 minutes, flexible cadence, built around the manuscript |
 | Steps | The four-step path from first note to published book |
 | About | Full bio, career, and awards |
@@ -165,6 +164,24 @@ With lazy on, roughly half the shelf slides past as empty white boxes.
 
 Steven has written **26** books; the shelf shows the 19 we have links for, so the copy
 says "here are some of them" rather than implying it is the complete set.
+
+## The Process section
+
+Replaced two sections that were saying the same thing twice: a "Coaching" block with
+two cards (Develop your writing / Publish your book) and a "Scope" block of clickable
+boxes (Content structuring, Developmental editing, Copy editing, Prepublication). The
+card bullets and the boxes were near-duplicates of each other.
+
+Now one section following the order a book is actually made, so each stage carries both
+the outcome and the craft work behind it:
+
+1. Find the idea · 2. Structure it · 3. Write the draft · 4. Edit it · 5. Publish it
+
+Nothing from either old section was dropped; every bullet and every box landed in a
+stage. The pills under each stage are the old scope box names.
+
+The old `.cards`, `.tile`, `.grid-4` and `.work-detail` CSS and the tile click-to-expand
+JS were deleted with it.
 
 ## The inquiry form (two steps, then Calendly)
 

@@ -23,7 +23,7 @@
      ======================================================= */
   var CONFIG = {
     PROVIDER:   'web3forms',                 // 'web3forms' | 'formspree' | 'mailto'
-    ACCESS_KEY: 'YOUR_WEB3FORMS_ACCESS_KEY', // <-- replace this
+    ACCESS_KEY: '6e098c51-71b0-4076-a622-25cd60d9546c',
     FORMSPREE_URL: '',                       // e.g. https://formspree.io/f/xxxxxxx
     TO_EMAIL:   'stevenhoward@verizon.net',
     SUBJECT:    'New coaching application',
